@@ -1,9 +1,13 @@
 <?php namespace App\Http\Controllers;
 
+use App\Blog;
+use App\BlogModel;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Feed;
 
 use Illuminate\Http\Request;
+use webignition\WebsiteRssFeedFinder\WebsiteRssFeedFinder;
 
 class BlogController extends Controller {
 
@@ -34,8 +38,18 @@ class BlogController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		dd($request->all());
-	}
+        $url = $request->input('url');
+        $finder = new WebsiteRssFeedFinder();
+        $finder -> setRootUrl($url);
+
+        $feedUrl = $finder->getRssFeedUrl();
+        $feed = Feed::loadRss($feedUrl);
+
+        $blog = Blog::create([
+            'title'=>$feed->title,
+            'url'=>$url
+        ]);
+    }
 
 	/**
 	 * Display the specified resource.

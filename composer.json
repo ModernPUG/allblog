@@ -6,7 +6,8 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "5.0.*",
-        "simplepie/simplepie": "dev-master"
+        "dg/rss-php": "dev-master",
+        "webignition/website-rss-feed-finder": "dev-master"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
