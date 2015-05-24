@@ -6,8 +6,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Feed;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-use webignition\WebsiteRssFeedFinder\WebsiteRssFeedFinder;
+use Illuminate\Support\Facades\Session;
 
 class BlogController extends Controller {
 
@@ -18,7 +19,8 @@ class BlogController extends Controller {
 	 */
 	public function index()
 	{
-		return 'here';
+		$blogs = Blog::all();
+        return view('blogs.index', compact('blogs'));
 	}
 
 	/**
@@ -39,16 +41,26 @@ class BlogController extends Controller {
 	public function store(Request $request)
 	{
         $url = $request->input('url');
-        $finder = new WebsiteRssFeedFinder();
-        $finder -> setRootUrl($url);
+        $feed = Feed::loadRss($url);
 
-        $feedUrl = $finder->getRssFeedUrl();
-        $feed = Feed::loadRss($feedUrl);
+        try {
+            Blog::create([
+                'title' => $feed->title,
+                'url' => $url
+            ]);
 
-        $blog = Blog::create([
-            'title'=>$feed->title,
-            'url'=>$url
-        ]);
+        } catch (QueryException $e) {
+
+            $message = "데이터베이스 오류입니다.";
+
+            if ($e->getCode() === '23000') {
+                $message = "중복된 url이거나 title입니다";
+            }
+
+            Session::flash('message', $message);
+        }
+
+        return redirect('/blog');
     }
 
 	/**

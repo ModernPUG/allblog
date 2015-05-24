@@ -21,3 +21,4 @@ Route::controllers([
 ]);
 
 Route::resource('blog', 'BlogController');
+
