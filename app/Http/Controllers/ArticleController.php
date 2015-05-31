@@ -1,17 +1,12 @@
 <?php namespace App\Http\Controllers;
 
-use App\Blog;
-use App\BlogModel;
+use App\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Feed;
 
-use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use Wandu\Http\Uri;
 
-class BlogController extends Controller {
+class ArticleController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -20,8 +15,9 @@ class BlogController extends Controller {
 	 */
 	public function index()
 	{
-		$blogs = Blog::all();
-        return view('blogs.index', compact('blogs'));
+        $articles = Article::with('blog')->get();
+
+        return view('articles.index', compact('articles'));
 	}
 
 	/**
@@ -31,7 +27,7 @@ class BlogController extends Controller {
 	 */
 	public function create()
 	{
-		return view("blogs.create");
+		//
 	}
 
 	/**
@@ -39,33 +35,10 @@ class BlogController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request)
+	public function store()
 	{
-        $url = $request->input('url');
-        $feed = Feed::loadRss($url);
-
-        $uri = new Uri($url);
-
-        try {
-            Blog::create([
-                'title' => $feed->title,
-                'url' => $url,
-                'host' => $uri->getHost()
-            ]);
-
-        } catch (QueryException $e) {
-
-            $message = "데이터베이스 오류입니다.";
-
-            if ($e->getCode() === '23000') {
-                $message = "중복된 url이거나 title입니다";
-            }
-
-            Session::flash('message', $message);
-        }
-
-        return redirect('/blog');
-    }
+		//
+	}
 
 	/**
 	 * Display the specified resource.

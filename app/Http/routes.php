@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'ArticleController@index');
 
 Route::get('home', 'HomeController@index');
 
@@ -21,4 +21,5 @@ Route::controllers([
 ]);
 
 Route::resource('blog', 'BlogController');
+Route::resource('article', 'ArticleController');
 

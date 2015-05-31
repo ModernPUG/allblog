@@ -6,7 +6,7 @@ class Blog extends Model
 {
 
     protected $fillable = [
-        'title', 'url'
+        'title', 'url', 'host'
     ];
 
 }

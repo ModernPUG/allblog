@@ -6,7 +6,8 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "5.0.*",
-        "dg/rss-php": "dev-master"
+        "dg/rss-php": "dev-master",
+        "wandu/http": "1.0.*@dev"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
