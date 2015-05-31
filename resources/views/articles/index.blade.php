@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-7 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading">글 목록</div>
                     <div class="panel-body">
@@ -22,6 +22,19 @@
                         <?php echo $articles->render(); ?>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-3 col-md-offset-1">
+                <ul>
+                @foreach($blogs as $blog)
+                    <li>
+                    @if($blog->host)
+                        <a href="//{{$blog->host}}">{{$blog->title}}</a>
+                    @else
+                        {{$blog->title}}
+                    @endif
+                    </li>
+                @endforeach
+                </ul>
             </div>
         </div>
     </div>
