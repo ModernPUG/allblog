@@ -16,7 +16,7 @@ class ArticleController extends Controller {
 	 */
 	public function index()
 	{
-        $articles = Article::with('blog')->paginate(20);;
+        $articles = Article::with('blog')->paginate(10);;
 
         $blogs = Blog::all();
 

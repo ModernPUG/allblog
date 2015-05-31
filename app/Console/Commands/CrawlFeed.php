@@ -51,13 +51,18 @@ class CrawlFeed extends Command
             foreach ($rss->item as $item) {
                 $uri = new Uri($item->link);
                 $link = $uri->getPath() . $uri->getQuery();
-                $article = Article::firstOrCreate([
-                    'title' => $item->title,
-                    'link' => $link,
-                    'description' => $item->description,
-                    'blog_id' => $blog->id
-                ]);
-                $this->info(print_r($article, true));
+                try {
+                    Article::firstOrCreate([
+                        'title' => $item->title,
+                        'link' => $link,
+                        'description' => $item->description,
+                        'blog_id' => $blog->id
+                    ]);
+                } catch (\PDOException $e) {
+                    if ($e->getCode() != 23000) {
+                        echo $e->getCode().PHP_EOL;
+                    }
+                }
             }
 
 
