@@ -19,6 +19,7 @@
                             </li>
                         @endforeach
                         </ul>
+                        <?php echo $articles->render(); ?>
                     </div>
                 </div>
             </div>
