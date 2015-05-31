@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Article;
+use App\Blog;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -17,7 +18,9 @@ class ArticleController extends Controller {
 	{
         $articles = Article::with('blog')->get();
 
-        return view('articles.index', compact('articles'));
+        $blogs = Blog::all();
+
+        return view('articles.index', compact('articles','blogs'));
 	}
 
 	/**
