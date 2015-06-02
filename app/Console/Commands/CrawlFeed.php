@@ -50,7 +50,7 @@ class CrawlFeed extends Command
 
             foreach ($rss->item as $item) {
                 $uri = new Uri($item->link);
-                $link = $uri->getPath() . $uri->getQuery();
+                $link = $uri->getPath() .'?'. $uri->getQuery();
                 try {
                     Article::firstOrCreate([
                         'title' => $item->title,
