@@ -6231,3 +6231,28 @@ label,
 .checkbox label {
   font-weight: 300;
 }
+ul.articleList {
+  list-style: none;
+  padding-left: 0;
+}
+ul.articleList > li {
+  margin-bottom: 50px;
+  margin-left: 0;
+}
+ul.articleList > li > p.title {
+  font-size: 24px;
+}
+ul.articleList > li > p.info {
+  color: #c8c8c8;
+  margin-top: 0;
+  padding-top: 0;
+}
+ul.articleList > li > p.description {
+  font-size: 16px;
+}
+ul.blogList {
+  list-style: none;
+  padding-left: 0;
+}
+
+/*# sourceMappingURL=app.css.map */
