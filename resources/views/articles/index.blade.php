@@ -19,7 +19,7 @@
                 @endforeach
                 </ul>
 
-                {{$articles->render()}}
+                <?php echo $articles->render();?>
             </div>
             <div class="col-md-3 col-md-offset-1">
                 <div class="panel panel-default">
