@@ -18,7 +18,7 @@ class ArticleController extends Controller {
 	{
         $articles = Article::with('blog')->orderBy('created_at','desc')->paginate(10);;
 
-        $blogs = Blog::all();
+        $blogs = Blog::orderBy('title','asc')->get();
 
         return view('articles.index', compact('articles','blogs'));
 	}
