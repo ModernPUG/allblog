@@ -13,7 +13,7 @@
 
 Route::get('/', 'ArticleController@index');
 
-Route::get('home', 'HomeController@index');
+Route::get('home', 'ArticleController@index');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
