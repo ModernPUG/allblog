@@ -15,6 +15,11 @@
                                 <div class="col-md-6">
                                     <input type="text" class="form-control" name="url" value="{{ old('url') }}">
                                 </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="atom"> Atom feed
+                                    </label>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
