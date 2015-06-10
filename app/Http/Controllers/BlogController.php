@@ -58,22 +58,32 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $rssUrl = $request->input('url');
+        $isAtom = $request->input('atom');        
 
         if(empty($rssUrl)) {
             return redirect('/blog')->with('message', '누락된 값이 있습니다.');
         }
 
-        try {
+        try {            
+            if ($isAtom == "on") {        
+                $feed = $this->feed->loadAtom($rssUrl);
+                $this->blog->atom = true;
+            }
+            else {
+                $feed = $this->feed->loadRss($rssUrl);  
+            }          
 
-            $feed = $this->feed->loadRss($rssUrl);
-            $title = $feed->title;
-            $hostUrl = $this->uri->getHost($rssUrl);
-
-            $this->blog->create([
-                'title' => $title,
-                'url' => $rssUrl,
-                'host' => $hostUrl
-            ]);
+            $this->blog->title = $feed->title;
+            
+             // site url 과 feed url 이 다를 경우가 있으므로 hostUrl 을 전송했으면 그 값 사용
+            $hostUrl = $request->input('hostUrl');
+            if (empty($hostUrl)) {
+                $hostUrl = $this->uri->getHost($rssUrl);
+            }
+            $this->blog->host = $hostUrl;
+            $this->blog->url = $rssUrl;
+            
+            $this->blog->save();
 
         } catch (QueryException $e) {
 
@@ -88,6 +98,7 @@ class BlogController extends Controller
             if($e->getMessage() == 'String could not be parsed as XML') {
                 return redirect('/blog')->with('message', '부적합한 RSS 주소 입니다.');
             } else {
+                \Log::error($e);
                 return redirect('/blog')->with('message', '알 수 없는 예외 발생.');
             }
         }

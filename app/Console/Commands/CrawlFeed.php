@@ -46,6 +46,11 @@ class CrawlFeed extends Command
         foreach ($blogs as $blog) {
             $url = $blog->url;
 
+            if ($blog->atom == true)
+            {
+                $this->crawlAtom($url, $blog);
+                continue;
+            }
             $rss = Feed::loadRss($url);
 
             foreach ($rss->item as $item) {
@@ -66,6 +71,30 @@ class CrawlFeed extends Command
             }
 
 
+        }
+    }
+
+    /**
+     * atom feed 가져오기
+     */ 
+    private function crawlAtom($url, $blog)
+    {
+        $feeds = Feed::loadAtom($url);
+
+        foreach ($feeds->entry as $feed) {
+
+            $link = $feed->link->attributes()->{'href'};
+            
+            try {
+                Article::firstOrCreate([
+                    'title' => $feed->title,
+                    'link' => $link,
+                    'description' => $feed->summary,
+                    'blog_id' => $blog->id
+                ]);
+            } catch (Exception $e) {
+                \Log::error($e);
+            }
         }
     }
 
