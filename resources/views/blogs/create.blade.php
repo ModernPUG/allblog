@@ -13,8 +13,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label">blog url</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="url" value="
-http://lesstif.com/spaces/createrssfeed.action?types=page&spaces=laravelphp&maxResults=5&title=Laravel+%EA%B3%BC+PHP">
+                                    <input type="text" class="form-control" name="url" value="">
                                 </div>
                                 <div class="checkbox">
                                     <label>
@@ -23,7 +22,7 @@ http://lesstif.com/spaces/createrssfeed.action?types=page&spaces=laravelphp&maxR
                                 </div>
                                 <label class="col-md-4 control-label">host url(feed url 과 다를 경우 입력)</label>
                                 <div class="col-md-6">
-                                   <input type="text" class="form-control" name="hostUrl" value="http://lesstif.com/display/laravelphp">
+                                   <input type="text" class="form-control" name="hostUrl" value="">
                                 </div>
                             </div>
                             <div class="form-group">
