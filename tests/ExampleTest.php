@@ -1,7 +1,5 @@
 <?php
 
-//use Feed;
-
 class ExampleTest extends TestCase {
 
 	/**
@@ -11,28 +9,9 @@ class ExampleTest extends TestCase {
 	 */
 	public function testBasicExample()
 	{
-		$this->markTestIncomplete();
-		$url = 'http://lesstif.com/spaces/createrssfeed.action?types=page&spaces=laravelphp&maxResults=15&title=[Laravel+%EA%B3%BC+PHP]+Pages+Feed&amp;publicFeed=false&amp;os_authType=basic';
+		$response = $this->call('GET', '/');
 
-		$rss = Feed::loadAtom($url);
-
-		//dd($rss);
-
-		foreach($rss->entry as $r) {
-			dump($r->title);
+		$this->assertEquals(200, $response->getStatusCode());
 		}
-	}
 
-	public function testQ() 
-	{
-		$url = 'http://ani2life.com/wp/??feed=rss&cat=8';
-
-		$rss = Feed::loadRss($url);
-
-		dd($rss);
-
-		foreach($rss->entry as $r) {
-			dump($r->title);
-		}
-	}
 }
