@@ -43,7 +43,7 @@ class CrawlFeed extends Command
     public function fire()
     {
         $blogs = Blog::all();
-        
+
         foreach ($blogs as $blog) {
             $url = $blog->url;
 
@@ -63,8 +63,8 @@ class CrawlFeed extends Command
         $feeds = Feed::loadAtom($url);
 
         foreach ($feeds->entry as $feed) {
-
-            $link = $feed->link->attributes()->{'href'};
+            $uri = new Uri($feed->link->attributes()->{'href'});
+            $link = $uri->getPath() . '?' . $uri->getQuery();
             $description = trim(strip_tags($feed->summary));
 
             try {
