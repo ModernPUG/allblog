@@ -58,7 +58,8 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         $rssUrl = $request->input('url');
-        $isAtom = $request->input('atom');        
+        $isAtom = $request->input('atom');
+        $hostUrl = $request->input('hostUrl');
 
         if(empty($rssUrl)) {
             return redirect('/blog')->with('message', '누락된 값이 있습니다.');
@@ -76,10 +77,12 @@ class BlogController extends Controller
             $this->blog->title = $feed->title;
             
              // site url 과 feed url 이 다를 경우가 있으므로 hostUrl 을 전송했으면 그 값 사용
-            $hostUrl = $request->input('hostUrl');
             if (empty($hostUrl)) {
                 $hostUrl = $this->uri->getHost($rssUrl);
+            } else {
+                $hostUrl = $this->uri->getHost($hostUrl);
             }
+
             $this->blog->host = $hostUrl;
             $this->blog->url = $rssUrl;
             
