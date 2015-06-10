@@ -43,34 +43,15 @@ class CrawlFeed extends Command
     public function fire()
     {
         $blogs = Blog::all();
+        
         foreach ($blogs as $blog) {
             $url = $blog->url;
 
-            if ($blog->atom == true)
-            {
+            if ($blog->atom == true) {
                 $this->crawlAtom($url, $blog);
-                continue;
+            } else {
+                $this->crawlRss($url, $blog);
             }
-            $rss = Feed::loadRss($url);
-
-            foreach ($rss->item as $item) {
-                $uri = new Uri($item->link);
-                $link = $uri->getPath() .'?'. $uri->getQuery();
-                try {
-                    Article::firstOrCreate([
-                        'title' => $item->title,
-                        'link' => $link,
-                        'description' => $item->description,
-                        'blog_id' => $blog->id
-                    ]);
-                } catch (\PDOException $e) {
-                    if ($e->getCode() != 23000) {
-                        echo $e->getCode().PHP_EOL;
-                    }
-                }
-            }
-
-
         }
     }
 
@@ -84,16 +65,44 @@ class CrawlFeed extends Command
         foreach ($feeds->entry as $feed) {
 
             $link = $feed->link->attributes()->{'href'};
-            
+            $description = trim(strip_tags($feed->summary));
+
             try {
                 Article::firstOrCreate([
                     'title' => $feed->title,
                     'link' => $link,
-                    'description' => $feed->summary,
+                    'description' => $description,
                     'blog_id' => $blog->id
                 ]);
             } catch (Exception $e) {
                 \Log::error($e);
+            }
+        }
+    }
+
+    /**
+     * rss feed 가져오기
+     */
+    public function crawlRss($url, $blog)
+    {
+        $rss = Feed::loadRss($url);
+
+        foreach ($rss->item as $item) {
+            $uri = new Uri($item->link);
+            $link = $uri->getPath() . '?' . $uri->getQuery();
+            $description = trim(strip_tags($item->description));
+
+            try {
+                Article::firstOrCreate([
+                    'title'       => $item->title,
+                    'link'        => $link,
+                    'description' => $description,
+                    'blog_id'     => $blog->id
+                ]);
+            } catch (\PDOException $e) {
+                if ($e->getCode() != 23000) {
+                    echo $e->getCode() . PHP_EOL;
+                }
             }
         }
     }
