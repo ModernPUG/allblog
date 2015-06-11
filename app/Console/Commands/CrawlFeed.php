@@ -45,12 +45,12 @@ class CrawlFeed extends Command
         $blogs = Blog::all();
 
         foreach ($blogs as $blog) {
-            $url = $blog->url;
+            $feedUrl = $blog->feed_url;
 
-            if ($blog->atom == true) {
-                $this->crawlAtom($url, $blog);
+            if ($blog->type == 'atom') {
+                $this->crawlAtom($feedUrl, $blog);
             } else {
-                $this->crawlRss($url, $blog);
+                $this->crawlRss($feedUrl, $blog);
             }
         }
     }
@@ -74,8 +74,11 @@ class CrawlFeed extends Command
                     'description' => $description,
                     'blog_id' => $blog->id
                 ]);
-            } catch (Exception $e) {
-                \Log::error($e);
+            } catch (\PDOException $e) {
+                if ($e->getCode() != 23000) {
+                    echo $e->getCode() . PHP_EOL;
+                    \Log::error($e);
+                }
             }
         }
     }

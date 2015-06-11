@@ -36,7 +36,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = $this->blog->all() ;
+        $blogs = $this->blog->all();
         return view('blogs.index', compact('blogs'));
     }
 
@@ -57,35 +57,39 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        $rssUrl = $request->input('url');
-        $isAtom = $request->input('atom');
-        $hostUrl = $request->input('hostUrl');
+        $feedUrl = $request->input('feed_url');
+        $type = $request->input('type');
 
-        if(empty($rssUrl)) {
+        if (empty($feedUrl)) {
             return redirect('/blog')->with('message', '누락된 값이 있습니다.');
         }
 
-        try {            
-            if ($isAtom == "on") {        
-                $feed = $this->feed->loadAtom($rssUrl);
-                $this->blog->atom = true;
+        $feedUrl = $this->uri->attachSchemeIfNotExist($feedUrl);
+
+        try {
+            switch ($type) {
+                case 'atom' :
+                    $feed = $this->feed->loadAtom($feedUrl);
+                    break;
+                default :
+                    $feed = $this->feed->loadRss($feedUrl);
+                    break;
             }
-            else {
-                $feed = $this->feed->loadRss($rssUrl);  
-            }          
 
             $this->blog->title = $feed->title;
-            
-             // site url 과 feed url 이 다를 경우가 있으므로 hostUrl 을 전송했으면 그 값 사용
+
+            // site url 과 feed url 이 다를 경우가 있으므로 hostUrl 을 전송했으면 그 값 사용
+            $hostUrl = $request->input('site_url');
             if (empty($hostUrl)) {
-                $hostUrl = $this->uri->getHost($rssUrl);
-            } else {
-                $hostUrl = $this->uri->getHost($hostUrl);
+                $hostUrl = $this->uri->getScheme($feedUrl) . '://' . $this->uri->getHost($feedUrl);
             }
 
-            $this->blog->host = $hostUrl;
-            $this->blog->url = $rssUrl;
-            
+            $hostUrl = $this->uri->attachSchemeIfNotExist($hostUrl);
+
+            $this->blog->site_url = $hostUrl;
+            $this->blog->feed_url = $feedUrl;
+            $this->blog->type = $type;
+
             $this->blog->save();
 
         } catch (QueryException $e) {
@@ -98,7 +102,7 @@ class BlogController extends Controller
 
             return redirect('/blog')->with('message', $message);
         } catch (\Exception $e) {
-            if($e->getMessage() == 'String could not be parsed as XML') {
+            if ($e->getMessage() == 'String could not be parsed as XML') {
                 return redirect('/blog')->with('message', '부적합한 RSS 주소 입니다.');
             } else {
                 \Log::error($e);
