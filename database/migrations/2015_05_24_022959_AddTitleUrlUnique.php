@@ -28,8 +28,17 @@ class AddTitleUrlUnique extends Migration {
 	{
         Schema::table('blogs', function($table)
         {
-            $table->dropUnique('title');
-            $table->dropUnique('url');
+            $conn = Schema::getConnection();
+            $dbSchemaManager = $conn->getDoctrineSchemaManager();
+            $doctrineTable = $dbSchemaManager->listTableDetails('blogs');
+
+            if($doctrineTable->hasIndex('title')) {
+                $table->dropUnique('title');
+            }
+
+            if($doctrineTable->hasIndex('url')) {
+                $table->dropUnique('url');
+            }
         });
 	}
 

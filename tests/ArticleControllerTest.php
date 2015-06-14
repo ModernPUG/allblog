@@ -2,6 +2,13 @@
 
 class ArticleControllerTest extends TestCase {
 
+    public function setUp()
+    {
+        parent::setUp();
+
+        Artisan::call('migrate:refresh');
+    }
+    
 	/**
 	 * A basic functional test example.
 	 *

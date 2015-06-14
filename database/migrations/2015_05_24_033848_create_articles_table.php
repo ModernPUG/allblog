@@ -20,7 +20,7 @@ class CreateArticlesTable extends Migration {
             $table->string('description');
 
             $table->integer('blog_id')->unsigned();
-            $table->foreign('blog_id')->references('id')->on('blogs');
+            $table->foreign('blog_id')->references('id')->on('blogs')->onDelete('cascade');;
 
             $table->timestamps();
 

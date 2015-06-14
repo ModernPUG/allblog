@@ -14,7 +14,14 @@ class UpdateUniqueKeyOfArticles extends Migration {
 	{
         Schema::table('articles', function($table)
         {
-            $table->dropUnique('articles_link');
+            $conn = Schema::getConnection();
+            $dbSchemaManager = $conn->getDoctrineSchemaManager();
+            $doctrineTable = $dbSchemaManager->listTableDetails('articles');
+
+            if($doctrineTable->hasIndex('articles_link')) {
+                $table->dropUnique('articles_link');
+            }
+
             $table->unique(['blog_id', 'link']);
         });
 	}
@@ -28,8 +35,21 @@ class UpdateUniqueKeyOfArticles extends Migration {
 	{
         Schema::table('articles', function($table)
         {
-            $table->dropUnique(['blog_id', 'link']);
-            $table->unique('articles_link');
+            $conn = Schema::getConnection();
+            $dbSchemaManager = $conn->getDoctrineSchemaManager();
+            $doctrineTable = $dbSchemaManager->listTableDetails('articles');
+
+            if($doctrineTable->hasIndex('articles_blog_id_link_unique')){
+                $table->dropForeign('articles_blog_id_foreign');
+                $table->dropUnique(['blog_id', 'link']);
+            }
+
+            if($doctrineTable->hasIndex('articles_link_unique') == false){
+                Schema::table('articles', function(Blueprint $table)
+                {
+                    $table->unique('link');
+                });
+            }
         });
 	}
 
