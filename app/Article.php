@@ -20,7 +20,7 @@ class Article extends Model
 
     public static function makeArticleLink($article)
     {
-        $uri = new Uri($article->blog->host);
+        $uri = new Uri($article->blog->site_url);
 
         return $uri->getHost().$article->link;
     }
