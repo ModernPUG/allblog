@@ -33,7 +33,7 @@ class BlogControllerTest extends TestCase {
  */
     public function testStoreFailByDuplicate()
     {
-        $user = new \App\User(['email' => 'troponin@daum.net']);
+        $user = new \App\User(['email' => 'example@example.com']);
 
         $this->be($user);
         $blog = new \Mockery\Mock('\App\Blog');
@@ -47,7 +47,7 @@ class BlogControllerTest extends TestCase {
 
     public function testStoreSuccess()
     {
-        $user = new \App\User(['email' => 'troponin@daum.net']);
+        $user = new \App\User(['email' => 'example@example.com']);
 
         $this->be($user);
         $blog = new \Mockery\Mock('\App\Blog');
