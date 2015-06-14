@@ -9,6 +9,7 @@ class BlogControllerTest extends TestCase {
         parent::setUp();
 
         Artisan::call('migrate:refresh');
+        $this->seed();
     }
 
 	/**
@@ -38,7 +39,7 @@ class BlogControllerTest extends TestCase {
         $this->be($user);
         $blog = new \Mockery\Mock('\App\Blog');
         $blog->shouldReceive('create')->once();
-        $testUrlFeed = ['url' => 'http://blog.wani.kr/feed.xml'];
+        $testUrlFeed = ['feed_url' => 'http://blog.wani.kr/feed.xml'];
 
         $this->call('POST', 'blog', $testUrlFeed);
         $this->assertRedirectedTo('blog');
@@ -52,7 +53,7 @@ class BlogControllerTest extends TestCase {
         $this->be($user);
         $blog = new \Mockery\Mock('\App\Blog');
         $blog->shouldReceive('create')->once();
-        $testUrlFeed = ['url' => 'http://bookworm.pe.kr/wordpress/feed'];
+        $testUrlFeed = ['feed_url' => 'http://bookworm.pe.kr/wordpress/feed'];
 
         $this->call('POST', 'blog', $testUrlFeed);
         $this->assertRedirectedTo('blog');
@@ -62,7 +63,7 @@ class BlogControllerTest extends TestCase {
     {
         $user = new \App\User(['email' => 'example@example.com']);
         $this->be($user);
-        $testUrlFeed = ['url' => ''];
+        $testUrlFeed = ['feed_url' => ''];
 
         $this->call('POST', 'blog', $testUrlFeed);
         $this->assertRedirectedTo('blog');
@@ -73,7 +74,7 @@ class BlogControllerTest extends TestCase {
     {
         $user = new \App\User(['email' => 'example@example.com']);
         $this->be($user);
-        $invalidTypeUrl = ['url' => 'http://bookworm.pe.kr/wordpress'];
+        $invalidTypeUrl = ['feed_url' => 'http://bookworm.pe.kr/wordpress'];
         $this->call('POST', 'blog', $invalidTypeUrl);
         $this->assertRedirectedTo('blog');
         $this->assertSessionHas('message','부적합한 RSS 주소 입니다.');

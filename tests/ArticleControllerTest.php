@@ -7,8 +7,9 @@ class ArticleControllerTest extends TestCase {
         parent::setUp();
 
         Artisan::call('migrate:refresh');
+        $this->seed();
     }
-    
+
 	/**
 	 * A basic functional test example.
 	 *
