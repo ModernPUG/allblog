@@ -33,7 +33,7 @@ class BlogControllerTest extends TestCase {
  */
     public function testStoreFailByDuplicate()
     {
-        $user = new \App\User(['email' => 'troponin@daum.net']);
+        $user = new \App\User(['email' => 'example@example.com']);
 
         $this->be($user);
         $blog = new \Mockery\Mock('\App\Blog');
@@ -47,7 +47,7 @@ class BlogControllerTest extends TestCase {
 
     public function testStoreSuccess()
     {
-        $user = new \App\User(['email' => 'troponin@daum.net']);
+        $user = new \App\User(['email' => 'example@example.com']);
 
         $this->be($user);
         $blog = new \Mockery\Mock('\App\Blog');
@@ -60,7 +60,7 @@ class BlogControllerTest extends TestCase {
 
     public function testStoreFailByEmptyUrl()
     {
-        $user = new \App\User(['email' => 'troponin@daum.net']);
+        $user = new \App\User(['email' => 'example@example.com']);
         $this->be($user);
         $testUrlFeed = ['url' => ''];
 
@@ -71,7 +71,7 @@ class BlogControllerTest extends TestCase {
 
     public function testStoreFailByInvalidRssType()
     {
-        $user = new \App\User(['email' => 'troponin@daum.net']);
+        $user = new \App\User(['email' => 'example@example.com']);
         $this->be($user);
         $invalidTypeUrl = ['url' => 'http://bookworm.pe.kr/wordpress'];
         $this->call('POST', 'blog', $invalidTypeUrl);
