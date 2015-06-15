@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Artisan;
 
-class BlogControllerTest extends TestCase {
-
+class BlogControllerTest extends TestCase
+{
     public function setUp()
     {
         parent::setUp();
@@ -12,17 +12,17 @@ class BlogControllerTest extends TestCase {
         $this->seed();
     }
 
-	/**
-	 * A basic functional test example.
-	 *
-	 * @return void
-	 */
-	public function testIndex()
-	{
-		$this->action('GET', 'BlogController@index');
+    /**
+     * A basic functional test example.
+     *
+     * @return void
+     */
+    public function testIndex()
+    {
+        $this->action('GET', 'BlogController@index');
         $this->assertViewHas('blogs');
         $this->assertViewMissing('blog');
-	}
+    }
 
 /*
  * 1. REQUEST 객체로 부터 rss주소를 받는다.
@@ -67,7 +67,7 @@ class BlogControllerTest extends TestCase {
 
         $this->call('POST', 'blog', $testUrlFeed);
         $this->assertRedirectedTo('blog');
-        $this->assertSessionHas('message','누락된 값이 있습니다.');
+        $this->assertSessionHas('message', '누락된 값이 있습니다.');
     }
 
     public function testStoreFailByInvalidRssType()
@@ -77,7 +77,6 @@ class BlogControllerTest extends TestCase {
         $invalidTypeUrl = ['feed_url' => 'http://bookworm.pe.kr/wordpress'];
         $this->call('POST', 'blog', $invalidTypeUrl);
         $this->assertRedirectedTo('blog');
-        $this->assertSessionHas('message','부적합한 RSS 주소 입니다.');
-
+        $this->assertSessionHas('message', '부적합한 RSS 주소 입니다.');
     }
 }

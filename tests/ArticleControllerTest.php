@@ -1,7 +1,7 @@
 <?php
 
-class ArticleControllerTest extends TestCase {
-
+class ArticleControllerTest extends TestCase
+{
     public function setUp()
     {
         parent::setUp();
@@ -10,17 +10,16 @@ class ArticleControllerTest extends TestCase {
         $this->seed();
     }
 
-	/**
-	 * A basic functional test example.
-	 *
-	 * @return void
-	 */
-	public function testIndex()
-	{
-		$this->action('GET', 'ArticleController@index');
+    /**
+     * A basic functional test example.
+     *
+     * @return void
+     */
+    public function testIndex()
+    {
+        $this->action('GET', 'ArticleController@index');
         $this->assertViewHas('articles');
         $this->assertViewHas('blogs');
         $this->assertViewMissing('blog');
-	}
-
+    }
 }
