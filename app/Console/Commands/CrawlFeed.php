@@ -10,7 +10,6 @@ use Wandu\Http\Uri;
 
 class CrawlFeed extends Command
 {
-
     /**
      * The console command name.
      *
@@ -57,7 +56,7 @@ class CrawlFeed extends Command
 
     /**
      * atom feed 가져오기
-     */ 
+     */
     private function crawlAtom($url, $blog)
     {
         $feeds = Feed::loadAtom($url);
@@ -129,5 +128,4 @@ class CrawlFeed extends Command
     {
         return [];
     }
-
 }

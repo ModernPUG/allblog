@@ -5,7 +5,6 @@ use Wandu\Http\Uri;
 
 class Article extends Model
 {
-
     protected $fillable = [
         'title',
         'link',

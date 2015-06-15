@@ -13,8 +13,8 @@ class ZendFeedTest extends TestCase
     {
         $links = Reader::findFeedLinks('http://www.planet-php.net');
 
-	$this->assertTrue(isset($links->rdf));
-	$this->assertTrue(isset($links->rss));
-	$this->assertTrue(isset($links->atom));
+        $this->assertTrue(isset($links->rdf));
+        $this->assertTrue(isset($links->rss));
+        $this->assertTrue(isset($links->atom));
     }
 }

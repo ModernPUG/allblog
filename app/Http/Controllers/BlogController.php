@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-
     protected $blog;
     protected $feed;
     protected $uri;
@@ -26,7 +25,6 @@ class BlogController extends Controller
         $this->blog = $blog;
         $this->feed = $feed;
         $this->uri = $uri;
-
     }
 
     /**
@@ -91,9 +89,7 @@ class BlogController extends Controller
             $this->blog->type = $type;
 
             $this->blog->save();
-
         } catch (QueryException $e) {
-
             $message = "데이터베이스 오류입니다.";
 
             if ($e->getCode() === '23000') {
@@ -156,5 +152,4 @@ class BlogController extends Controller
     {
         //
     }
-
 }
