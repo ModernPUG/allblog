@@ -64,6 +64,18 @@ return [
             'strict'    => false,
         ],
 
+        'allblog_test' => [
+            'driver'    => 'mysql',
+            'host'      => 'localhost',
+            'database'  => 'allblog_test',
+            'username'  => 'allblog_test',
+            'password'  => 'password',
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+        ],
+
         'pgsql' => [
             'driver'   => 'pgsql',
             'host'     => env('DB_HOST', 'localhost'),
