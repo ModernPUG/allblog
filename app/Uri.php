@@ -12,6 +12,7 @@ class Uri
 {
     public function getHost($url)
     {
+        $url = $this->attachSchemeIfNotExist($url);
         $uri = new \Wandu\Http\Uri($url);
         return $uri->getHost();
     }

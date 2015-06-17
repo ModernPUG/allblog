@@ -1,7 +1,6 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Wandu\Http\Uri;
 
 class Article extends Model
 {
@@ -19,8 +18,7 @@ class Article extends Model
 
     public static function makeArticleLink($article)
     {
-        $uri = new Uri($article->blog->site_url);
-
-        return $uri->getHost().$article->link;
+        $uri = new \App\Uri();
+        return $uri->getHost($article->blog->site_url).$article->link;
     }
 }
