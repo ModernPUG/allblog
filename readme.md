@@ -53,7 +53,7 @@ $ php artisan migrate --database="allblog"
 $ php artisan migrate --database="allblog_test"
 ````
 
-### .env 에 DB 관련 설정 변경
+#### .env 에 DB 관련 설정 변경
 
 `.env.example` 파일을 복사해서 `.env` 파일을 만듦
 
