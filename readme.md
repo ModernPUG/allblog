@@ -52,6 +52,19 @@ $ php artisan migrate --database="allblog"
 
 $ php artisan migrate --database="allblog_test"
 ````
+
+### .env 에 DB 관련 설정 변경
+
+`.env.example` 파일을 복사해서 `.env` 파일을 만듦
+
+`.env` 파일에서 DB 관련 설정을 아래와 같이 변경
+
+````
+DB_DATABASE=allblog
+DB_USERNAME=allblog
+DB_PASSWORD=password
+````
+
 ### storage 폴더 권한 조정
 
 `chmod -R 755 storage`
