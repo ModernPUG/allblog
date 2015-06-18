@@ -7,6 +7,7 @@ use App\Http\Requests;
 use Feed;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Artisan;
 
 class BlogController extends Controller
 {
@@ -89,6 +90,7 @@ class BlogController extends Controller
             $this->blog->type = $type;
 
             $this->blog->save();
+            Artisan::call('crawlfeed:run');
         } catch (QueryException $e) {
             $message = "데이터베이스 오류입니다.";
 
