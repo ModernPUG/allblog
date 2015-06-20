@@ -18,8 +18,12 @@ class Reader
         return Blog::orderBy('title', 'asc')->get();
     }
 
-    public function insertFeed(Request $request, Blog $blog, Feed $feed, \App\Uri $uri)
+    public function insertFeed(Request $request)
     {
+        $blog = new Blog();
+        $feed = new Feed();
+        $uri = new \App\Uri();
+
         $feedUrl = $request->input('feed_url');
         $type = $request->input('type');
 
