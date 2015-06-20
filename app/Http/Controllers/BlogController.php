@@ -26,6 +26,11 @@ class BlogController extends Controller
         $hostUrl = $request->input('site_url');
         $feedUrl = $request->input('feed_url');
         $type = $request->input('type');
-        return $reader->insertFeed($hostUrl, $feedUrl, $type);
+
+        $redirect = redirect('/blog');
+        if ( !$reader->insertFeed($hostUrl, $feedUrl, $type) ) {
+            $redirect->with('message', $reader->getLastError());
+        }
+        return $redirect;
     }
 }

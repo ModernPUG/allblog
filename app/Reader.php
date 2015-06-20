@@ -4,6 +4,13 @@ namespace App;
 
 class Reader
 {
+    private $lastError;
+
+    public function getLastError()
+    {
+        return $this->lastError;
+    }
+
     public function recentUpdatedArticles()
     {
         return Article::with('blog')->orderBy('created_at', 'desc')->paginate(10);
@@ -52,22 +59,25 @@ class Reader
             $blog->save();
             \Artisan::call('crawlfeed:run');
         } catch (QueryException $e) {
-            $message = "데이터베이스 오류입니다.";
 
+            $this->lastError = "데이터베이스 오류입니다.";
             if ($e->getCode() === '23000') {
-                $message = "중복된 url이거나 title입니다";
+                $this->lastError = "중복된 url이거나 title입니다";
             }
+            return false;
 
-            return redirect('/blog')->with('message', $message);
         } catch (\Exception $e) {
+
             if ($e->getMessage() == 'String could not be parsed as XML') {
-                return redirect('/blog')->with('message', '부적합한 RSS 주소 입니다.');
+                $this->lastError = '부적합한 RSS 주소 입니다.';
             } else {
                 \Log::error($e);
-                return redirect('/blog')->with('message', '알 수 없는 예외 발생.');
+                $this->lastError = '알 수 없는 예외 발생.';
             }
+            return false;
+
         }
 
-        return redirect('/blog');
+        return true;
     }
 }
