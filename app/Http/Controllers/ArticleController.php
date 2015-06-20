@@ -1,10 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use App\Article;
-use App\Blog;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Reader as Reader;
 
 class ArticleController extends Controller
 {
@@ -13,12 +9,10 @@ class ArticleController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Reader $reader)
     {
-        $articles = Article::with('blog')->orderBy('created_at', 'desc')->paginate(10);
-
-        $blogs = Blog::orderBy('title', 'asc')->get();
-
+        $articles = $reader->recentUpdatedArticles();
+        $blogs = $reader->blogs();
         return view('articles.index', compact('articles', 'blogs'));
     }
 

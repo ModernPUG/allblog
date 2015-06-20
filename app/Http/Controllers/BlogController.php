@@ -1,13 +1,9 @@
 <?php namespace App\Http\Controllers;
 
 use App\Blog;
-use App\BlogModel;
-use App\Http\Controllers\Controller;
-use App\Http\Requests;
+use App\Reader as Reader;
 use Feed;
-use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-use Artisan;
 
 class BlogController extends Controller
 {
@@ -20,12 +16,9 @@ class BlogController extends Controller
      *
      * @return void
      */
-    public function __construct(Blog $blog, Feed $feed, \App\Uri $uri)
+    public function __construct()
     {
         $this->middleware('auth', ['except' => ['index']]);
-        $this->blog = $blog;
-        $this->feed = $feed;
-        $this->uri = $uri;
     }
 
     /**
@@ -33,9 +26,9 @@ class BlogController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Reader $reader)
     {
-        $blogs = $this->blog->all();
+        $blogs = $reader->blogs();
         return view('blogs.index', compact('blogs'));
     }
 
@@ -54,61 +47,9 @@ class BlogController extends Controller
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Reader $reader, Request $request, Blog $blog, Feed $feed, \App\Uri $uri)
     {
-        $feedUrl = $request->input('feed_url');
-        $type = $request->input('type');
-
-        if (empty($feedUrl)) {
-            return redirect('/blog')->with('message', '누락된 값이 있습니다.');
-        }
-
-        $feedUrl = $this->uri->attachSchemeIfNotExist($feedUrl);
-
-        try {
-            switch ($type) {
-                case 'atom' :
-                    $feed = $this->feed->loadAtom($feedUrl);
-                    break;
-                default :
-                    $feed = $this->feed->loadRss($feedUrl);
-                    break;
-            }
-
-            $this->blog->title = $feed->title;
-
-            // site url 과 feed url 이 다를 경우가 있으므로 hostUrl 을 전송했으면 그 값 사용
-            $hostUrl = $request->input('site_url');
-            if (empty($hostUrl)) {
-                $hostUrl = $this->uri->getScheme($feedUrl) . '://' . $this->uri->getHost($feedUrl);
-            }
-
-            $hostUrl = $this->uri->attachSchemeIfNotExist($hostUrl);
-
-            $this->blog->site_url = $hostUrl;
-            $this->blog->feed_url = $feedUrl;
-            $this->blog->type = $type;
-
-            $this->blog->save();
-            Artisan::call('crawlfeed:run');
-        } catch (QueryException $e) {
-            $message = "데이터베이스 오류입니다.";
-
-            if ($e->getCode() === '23000') {
-                $message = "중복된 url이거나 title입니다";
-            }
-
-            return redirect('/blog')->with('message', $message);
-        } catch (\Exception $e) {
-            if ($e->getMessage() == 'String could not be parsed as XML') {
-                return redirect('/blog')->with('message', '부적합한 RSS 주소 입니다.');
-            } else {
-                \Log::error($e);
-                return redirect('/blog')->with('message', '알 수 없는 예외 발생.');
-            }
-        }
-
-        return redirect('/blog');
+        return $reader->insertFeed($request, $blog, $feed, $uri);
     }
 
     /**
