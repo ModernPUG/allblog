@@ -1,10 +1,10 @@
 <?php namespace App\Http\Controllers;
 
-use App\KooReader as Reader;
+use App\IReader;
 
 class ArticleController extends Controller
 {
-    public function index(Reader $reader)
+    public function index(IReader $reader)
     {
         $articles = $reader->recentUpdatedArticles();
         $blogs = $reader->blogs();

@@ -2,17 +2,17 @@
 
 use Zend\Feed\Reader\Reader;
 
-class ZendFeedTest extends TestCase
+class KooReaderBasedBlogControllerTest extends BlogControllerTest
 {
-    /**
-     * A basic functional test example.
-     *
-     * @return void
-     */
+    public function setUp()
+    {
+        parent::setUp();
+        $this->app->bind('App\IReader', 'App\KooReader');
+    }
+
     public function testFindFeedLinks()
     {
         $links = Reader::findFeedLinks('http://bookworm.pe.kr/wordpress/');
-
         $this->assertTrue(!isset($links->rdf));
         $this->assertTrue(isset($links->rss));
         $this->assertTrue(!isset($links->atom));

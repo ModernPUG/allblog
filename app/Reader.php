@@ -2,7 +2,7 @@
 
 namespace App;
 
-class Reader
+class Reader implements IReader
 {
     private $lastError;
 
@@ -23,18 +23,16 @@ class Reader
 
     public function insertFeed($hostUrl, $feedUrl, $type)
     {
-        $blog = new Blog();
-        $feed = new \Feed();
-        $uri = new \App\Uri();
-
         if (empty($feedUrl)) {
             $this->lastError = '누락된 값이 있습니다.';
             return false;
         }
 
-        $feedUrl = $uri->attachSchemeIfNotExist($feedUrl);
-
         try {
+            $uri = new \App\Uri();
+            $feedUrl = $uri->attachSchemeIfNotExist($feedUrl);
+
+            $feed = new \Feed();
             switch ($type) {
                 case 'atom' :
                     $feed = $feed->loadAtom($feedUrl);
@@ -44,21 +42,21 @@ class Reader
                     break;
             }
 
-            $blog->title = $feed->title;
-
             // site url 과 feed url 이 다를 경우가 있으므로 hostUrl 을 전송했으면 그 값 사용
             if (empty($hostUrl)) {
                 $hostUrl = $uri->getScheme($feedUrl) . '://' . $uri->getHost($feedUrl);
             }
-
             $hostUrl = $uri->attachSchemeIfNotExist($hostUrl);
 
+            $blog = new Blog();
+            $blog->title = $feed->title;
             $blog->site_url = $hostUrl;
             $blog->feed_url = $feedUrl;
             $blog->type = $type;
-
             $blog->save();
+
             \Artisan::call('crawlfeed:run');
+
         } catch (QueryException $e) {
 
             $this->lastError = "데이터베이스 오류입니다.";

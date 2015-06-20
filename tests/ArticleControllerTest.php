@@ -5,16 +5,10 @@ class ArticleControllerTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-
-        Artisan::call('migrate:refresh');
-        $this->seed();
+        $this->clearDatabase();
+        $this->app->bind('App\IReader', 'App\Reader');
     }
 
-    /**
-     * A basic functional test example.
-     *
-     * @return void
-     */
     public function testIndex()
     {
         $this->action('GET', 'ArticleController@index');

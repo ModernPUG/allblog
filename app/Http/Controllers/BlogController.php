@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use App\KooReader as Reader;
+use App\IReader;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -10,7 +10,7 @@ class BlogController extends Controller
         $this->middleware('auth', ['except' => ['index']]);
     }
 
-    public function index(Reader $reader)
+    public function index(IReader $reader)
     {
         $blogs = $reader->blogs();
         return view('blogs.index', compact('blogs'));
@@ -21,7 +21,7 @@ class BlogController extends Controller
         return view("blogs.create");
     }
 
-    public function store(Reader $reader, Request $request)
+    public function store(IReader $reader, Request $request)
     {
         $hostUrl = $request->input('site_url');
         $feedUrl = $request->input('feed_url');
