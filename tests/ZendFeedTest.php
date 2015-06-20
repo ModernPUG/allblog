@@ -11,10 +11,10 @@ class ZendFeedTest extends TestCase
      */
     public function testFindFeedLinks()
     {
-        $links = Reader::findFeedLinks('http://www.planet-php.net');
+        $links = Reader::findFeedLinks('http://bookworm.pe.kr/wordpress/');
 
-        $this->assertTrue(isset($links->rdf));
+        $this->assertTrue(!isset($links->rdf));
         $this->assertTrue(isset($links->rss));
-        $this->assertTrue(isset($links->atom));
+        $this->assertTrue(!isset($links->atom));
     }
 }
