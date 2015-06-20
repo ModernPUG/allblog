@@ -2,86 +2,81 @@
 
 namespace App\Reader;
 
-class KooReader implements IReader
+use Zend\Feed\Reader\Reader as ZendReader;
+
+class KooReader extends Reader implements IReader
 {
-    private $lastError;
-
-    public function getLastError()
-    {
-        return $this->lastError;
-    }
-
     public function getCreateViewName()
     {
         return "blogs.koocreate";
     }
 
-    public function recentUpdatedArticles()
+    public function insertFeed($args)
     {
-        return Article::with('blog')->orderBy('created_at', 'desc')->paginate(10);
-    }
+        $url = $args['url'];
 
-    public function blogs()
-    {
-        return Blog::orderBy('title', 'asc')->get();
-    }
-
-    public function insertFeed($hostUrl, $feedUrl, $type)
-    {
-        if (empty($feedUrl)) {
+        if (empty($url)) {
             $this->lastError = '누락된 값이 있습니다.';
             return false;
         }
 
         try {
-            $uri = new \App\Reader\Uri();
-            $feedUrl = $uri->attachSchemeIfNotExist($feedUrl);
-
-            $feed = new \Feed();
-            switch ($type) {
-                case 'atom' :
-                    $feed = $feed->loadAtom($feedUrl);
+            $blogInfo = $this->getBlogInfo($url);
+            if ( ! $blogInfo ) {
+                foreach ( ZendReader::findFeedLinks($url) as $link ) {
+                    $url = $link['href'];
                     break;
-                default :
-                    $feed = $feed->loadRss($feedUrl);
-                    break;
+                }
+                $blogInfo = $this->getBlogInfo($url);
             }
-
-            // site url 과 feed url 이 다를 경우가 있으므로 hostUrl 을 전송했으면 그 값 사용
-            if (empty($hostUrl)) {
-                $hostUrl = $uri->getScheme($feedUrl) . '://' . $uri->getHost($feedUrl);
-            }
-            $hostUrl = $uri->attachSchemeIfNotExist($hostUrl);
-
             $blog = new Blog();
-            $blog->title = $feed->title;
-            $blog->site_url = $hostUrl;
-            $blog->feed_url = $feedUrl;
-            $blog->type = $type;
-            $blog->save();
+            $blog->create($blogInfo);
+            \Artisan::call('crawlfeed:run'); //TODO: atom feed가 자꾸 invalid channel 오류가 나는데 atom url 만드는 법은 배워서 해야징
 
-            \Artisan::call('crawlfeed:run');
-
-        } catch (QueryException $e) {
-
-            $this->lastError = "데이터베이스 오류입니다.";
-            if ($e->getCode() === '23000') {
-                $this->lastError = "중복된 url이거나 title입니다";
-            }
+        } catch ( \Exception $e ) {
+            $this->lastError = $e->getMessage();
             return false;
-
-        } catch (\Exception $e) {
-
-            if ($e->getMessage() == 'String could not be parsed as XML') {
-                $this->lastError = '부적합한 RSS 주소 입니다.';
-            } else {
-                \Log::error($e);
-                $this->lastError = '알 수 없는 예외 발생.';
-            }
-            return false;
-
         }
 
         return true;
+    }
+
+    private function getBlogInfo($url)
+    {
+        $blogInfo = null;
+
+        try {
+
+            //TODO: 아놔 get_class 썼음.. DB에게 type을 알려줘야 스케쥴러가 돌수 있기 때문인데 나중에 스케쥴러 zend로 바꾸면서 없애자
+            $feed = ZendReader::import($url);
+            switch ( get_class($feed) ) {
+                case 'Zend\Feed\Reader\Feed\Rss':
+                    $type = 'rss';
+                    break;
+                case 'Zend\Feed\Reader\Feed\Atom':
+                    $type = 'atom';
+                    break;
+                default:
+                    return null;
+                    break;
+            }
+            $feedUrl = $feed->getFeedLink();
+            $siteUrl = $feed->getLink();
+            if (!strpos($siteUrl, '://')) {
+                $uri = new \App\Reader\Uri();
+                $siteUrl = $uri->getScheme($feedUrl) . '://' . $uri->getHost($feedUrl) . $siteUrl;
+            }
+            $blogInfo = [
+                'title' => $feed->getTitle(),
+                'feed_url' => $feedUrl,
+                'site_url' => $siteUrl,
+                'type' => $type,
+            ];
+
+        } catch ( \Exception $e ) {
+            return null;
+        }
+
+        return $blogInfo;
     }
 }

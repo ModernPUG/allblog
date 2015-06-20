@@ -4,7 +4,7 @@ namespace App\Reader;
 
 class Reader implements IReader
 {
-    private $lastError;
+    protected $lastError;
 
     public function getLastError()
     {
@@ -26,8 +26,12 @@ class Reader implements IReader
         return Blog::orderBy('title', 'asc')->get();
     }
 
-    public function insertFeed($hostUrl, $feedUrl, $type)
+    public function insertFeed($args)
     {
+        $siteUrl = $args['site_url'];
+        $feedUrl = $args['feed_url'];
+        $type = $args['type'];
+
         if (empty($feedUrl)) {
             $this->lastError = '누락된 값이 있습니다.';
             return false;
@@ -48,14 +52,14 @@ class Reader implements IReader
             }
 
             // site url 과 feed url 이 다를 경우가 있으므로 hostUrl 을 전송했으면 그 값 사용
-            if (empty($hostUrl)) {
-                $hostUrl = $uri->getScheme($feedUrl) . '://' . $uri->getHost($feedUrl);
+            if (empty($siteUrl)) {
+                $siteUrl = $uri->getScheme($feedUrl) . '://' . $uri->getHost($feedUrl);
             }
-            $hostUrl = $uri->attachSchemeIfNotExist($hostUrl);
+            $siteUrl = $uri->attachSchemeIfNotExist($siteUrl);
 
             $blog = new Blog();
             $blog->title = $feed->title;
-            $blog->site_url = $hostUrl;
+            $blog->site_url = $siteUrl;
             $blog->feed_url = $feedUrl;
             $blog->type = $type;
             $blog->save();

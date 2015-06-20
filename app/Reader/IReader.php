@@ -8,5 +8,5 @@ interface IReader
     public function getCreateViewName();
     public function recentUpdatedArticles();
     public function blogs();
-    public function insertFeed($hostUrl, $feedUrl, $type);
+    public function insertFeed($args);
 }

@@ -1,11 +1,9 @@
 <?php namespace App\Console\Commands;
 
-use App\Article;
-use App\Blog;
+use App\Reader\Article;
+use App\Reader\Blog;
 use Feed;
 use Illuminate\Console\Command;
-use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputOption;
 use Wandu\Http\Uri;
 
 class CrawlFeed extends Command

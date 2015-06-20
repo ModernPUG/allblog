@@ -23,12 +23,8 @@ class BlogController extends Controller
 
     public function store(IReader $reader, Request $request)
     {
-        $hostUrl = $request->input('site_url');
-        $feedUrl = $request->input('feed_url');
-        $type = $request->input('type');
-
         $redirect = redirect('/blog');
-        if ( !$reader->insertFeed($hostUrl, $feedUrl, $type) ) {
+        if ( !$reader->insertFeed($request->all()) ) {
             $redirect->with('message', $reader->getLastError());
         }
         return $redirect;
