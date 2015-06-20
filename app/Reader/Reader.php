@@ -11,6 +11,11 @@ class Reader implements IReader
         return $this->lastError;
     }
 
+    public function getCreateViewName()
+    {
+        return "blogs.create";
+    }
+
     public function recentUpdatedArticles()
     {
         return Article::with('blog')->orderBy('created_at', 'desc')->paginate(10);

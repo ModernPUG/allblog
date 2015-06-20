@@ -16,9 +16,9 @@ class BlogController extends Controller
         return view('blogs.index', compact('blogs'));
     }
 
-    public function create()
+    public function create(IReader $reader)
     {
-        return view("blogs.create");
+        return view($reader->getCreateViewName());
     }
 
     public function store(IReader $reader, Request $request)
