@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use App\IReader;
+use App\Reader\IReader;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller

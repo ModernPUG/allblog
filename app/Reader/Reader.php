@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Reader;
 
-class KooReader implements IReader
+class Reader implements IReader
 {
     private $lastError;
 
@@ -29,7 +29,7 @@ class KooReader implements IReader
         }
 
         try {
-            $uri = new \App\Uri();
+            $uri = new \App\Reader\Uri();
             $feedUrl = $uri->attachSchemeIfNotExist($feedUrl);
 
             $feed = new \Feed();

@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace App\Reader;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,12 +13,12 @@ class Article extends Model
 
     public function blog()
     {
-        return $this->belongsTo('App\Blog');
+        return $this->belongsTo('App\Reader\Blog');
     }
 
     public static function makeArticleLink($article)
     {
-        $uri = new \App\Uri();
+        $uri = new \App\Reader\Uri();
         return $uri->getHost($article->blog->site_url).$article->link;
     }
 }

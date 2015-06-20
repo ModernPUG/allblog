@@ -1,4 +1,4 @@
-<?php namespace App\Services;
+<?php namespace App\Reader;
 
 use App\User;
 use Validator;

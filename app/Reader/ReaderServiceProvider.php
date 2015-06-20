@@ -1,4 +1,4 @@
-<?php namespace App\Providers;
+<?php namespace App\Reader;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -21,8 +21,8 @@ class ReaderServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-        $this->app->singleton(\App\IReader::class, function ($app) {
-            return new \App\KooReader();
+        $this->app->singleton(\App\Reader\IReader::class, function ($app) {
+            return new \App\Reader\KooReader();
         });
 	}
 

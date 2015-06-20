@@ -6,7 +6,7 @@
  * Time: 오후 12:36
  */
 
-namespace App;
+namespace App\Reader;
 
 class Uri
 {
