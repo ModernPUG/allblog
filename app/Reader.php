@@ -28,7 +28,8 @@ class Reader
         $uri = new \App\Uri();
 
         if (empty($feedUrl)) {
-            return redirect('/blog')->with('message', '누락된 값이 있습니다.');
+            $this->lastError = '누락된 값이 있습니다.';
+            return false;
         }
 
         $feedUrl = $uri->attachSchemeIfNotExist($feedUrl);
