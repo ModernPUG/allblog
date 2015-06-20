@@ -45,14 +45,6 @@ mysql> GRANT ALL PRIVILEGES ON allblog_test.* TO 'allblog_test'@'localhost';
 mysql> FLUSH PRIVILEGES;
 ````
 
-#### 마이그레이션
-
-````
-$ php artisan migrate --database="allblog"
-
-$ php artisan migrate --database="allblog_test"
-````
-
 #### .env 에 DB 관련 설정 변경
 
 `.env.example` 파일을 복사해서 `.env` 파일을 만듦
@@ -63,6 +55,14 @@ $ php artisan migrate --database="allblog_test"
 DB_DATABASE=allblog
 DB_USERNAME=allblog
 DB_PASSWORD=password
+````
+
+#### 마이그레이션
+
+````
+$ php artisan migrate
+
+$ php artisan migrate --database="allblog_test"
 ````
 
 ### storage 폴더 권한 조정
