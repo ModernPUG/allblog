@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use App\Reader as Reader;
+use App\KooReader as Reader;
 
 class ArticleController extends Controller
 {
