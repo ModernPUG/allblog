@@ -16,7 +16,6 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::with('blog')->orderBy('created_at', 'desc')->paginate(10);
-        ;
 
         $blogs = Blog::orderBy('title', 'asc')->get();
 
