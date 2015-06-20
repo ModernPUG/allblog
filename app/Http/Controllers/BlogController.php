@@ -23,6 +23,9 @@ class BlogController extends Controller
 
     public function store(Reader $reader, Request $request)
     {
-        return $reader->insertFeed($request);
+        $hostUrl = $request->input('site_url');
+        $feedUrl = $request->input('feed_url');
+        $type = $request->input('type');
+        return $reader->insertFeed($hostUrl, $feedUrl, $type);
     }
 }

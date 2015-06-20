@@ -2,10 +2,6 @@
 
 namespace App;
 
-use Illuminate\Http\Request;
-use Feed;
-use Artisan;
-
 class Reader
 {
     public function recentUpdatedArticles()
@@ -18,14 +14,11 @@ class Reader
         return Blog::orderBy('title', 'asc')->get();
     }
 
-    public function insertFeed(Request $request)
+    public function insertFeed($hostUrl, $feedUrl, $type)
     {
         $blog = new Blog();
-        $feed = new Feed();
+        $feed = new \Feed();
         $uri = new \App\Uri();
-
-        $feedUrl = $request->input('feed_url');
-        $type = $request->input('type');
 
         if (empty($feedUrl)) {
             return redirect('/blog')->with('message', '누락된 값이 있습니다.');
@@ -46,7 +39,6 @@ class Reader
             $blog->title = $feed->title;
 
             // site url 과 feed url 이 다를 경우가 있으므로 hostUrl 을 전송했으면 그 값 사용
-            $hostUrl = $request->input('site_url');
             if (empty($hostUrl)) {
                 $hostUrl = $uri->getScheme($feedUrl) . '://' . $uri->getHost($feedUrl);
             }
@@ -58,7 +50,7 @@ class Reader
             $blog->type = $type;
 
             $blog->save();
-            Artisan::call('crawlfeed:run');
+            \Artisan::call('crawlfeed:run');
         } catch (QueryException $e) {
             $message = "데이터베이스 오류입니다.";
 
