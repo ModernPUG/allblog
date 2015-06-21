@@ -13,7 +13,7 @@
                 @foreach($articles as $article)
                     <li>
                         <p class="title"><a href="{{$article->link}}"><span style="font-weight: bold">{{$article->title}}</span></a></p>
-                        <p class="info">{{$article->blog->title}} {{$article->created_at}}</p>
+                        <p class="info">{{$article->blog->title}} {{$article->published_at}}</p>
                         <p class="description">{{strip_tags($article->description)}}</p>
                     </li>
                 @endforeach

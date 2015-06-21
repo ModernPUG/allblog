@@ -8,6 +8,7 @@ class Article extends Model
         'title',
         'link',
         'description',
+        'published_at',
         'blog_id'
     ];
 

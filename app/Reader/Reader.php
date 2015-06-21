@@ -21,7 +21,7 @@ class Reader implements IReader
 
     public function recentUpdatedArticles()
     {
-        return Article::with('blog')->orderBy('created_at', 'desc')->paginate(10);
+        return Article::with('blog')->orderBy('published_at', 'desc')->paginate(10);
     }
 
     public function blogs()
@@ -107,7 +107,8 @@ class Reader implements IReader
             $blogUri = new Uri($blog->feed_url);
             $articleUri = new Uri($entry->getLink());
             $link = $blogUri->join($articleUri)->__toString();
-            $description = $entry->getDescription();
+            $description = mb_substr($entry->getDescription(),0,250);
+            $published_at = $entry->getDateModified();
 
             $article = Article::where('blog_id', $blog->id)
                 ->where('link', $link)
@@ -118,6 +119,7 @@ class Reader implements IReader
                     'title'       => $entry->getTitle(),
                     'link'        => $link,
                     'description' => $description,
+                    'published_at' => $published_at,
                     'blog_id'     => $blog->id
                 ]);
             } else {
