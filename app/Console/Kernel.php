@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
         'App\Console\Commands\Inspire',
         'App\Console\Commands\CrawlFeed',
         'App\Console\Commands\ClearDb',
+        'App\Console\Commands\RefreshDb',
     ];
 
     /**
