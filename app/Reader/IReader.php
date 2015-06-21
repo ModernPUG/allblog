@@ -9,4 +9,6 @@ interface IReader
     public function recentUpdatedArticles();
     public function blogs();
     public function insertFeed($args);
+    public function updateAllblogs();
+    public function updateBlog($blog);
 }

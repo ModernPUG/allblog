@@ -2,6 +2,9 @@
 
 namespace App\Reader;
 
+use Zend\Feed\Reader\Reader as ZendReader;
+use Wandu\Http\Uri;
+
 class Reader implements IReader
 {
     protected $lastError;
@@ -28,64 +31,102 @@ class Reader implements IReader
 
     public function insertFeed($args)
     {
-        $siteUrl = $args['site_url'];
-        $feedUrl = $args['feed_url'];
-        $type = $args['type'];
+        $url = $args['url'];
 
-        if (empty($feedUrl)) {
+        if (empty($url)) {
             $this->lastError = '누락된 값이 있습니다.';
             return false;
         }
 
         try {
-            $uri = new \App\Reader\Uri();
-            $feedUrl = $uri->attachSchemeIfNotExist($feedUrl);
-
-            $feed = new \Feed();
-            switch ($type) {
-                case 'atom' :
-                    $feed = $feed->loadAtom($feedUrl);
+            $blogInfo = $this->getBlogInfo($url);
+            if ( ! $blogInfo ) {
+                foreach ( ZendReader::findFeedLinks($url) as $link ) {
+                    $url = $link['href'];
                     break;
-                default :
-                    $feed = $feed->loadRss($feedUrl);
-                    break;
+                }
+                $blogInfo = $this->getBlogInfo($url);
             }
-
-            // site url 과 feed url 이 다를 경우가 있으므로 hostUrl 을 전송했으면 그 값 사용
-            if (empty($siteUrl)) {
-                $siteUrl = $uri->getScheme($feedUrl) . '://' . $uri->getHost($feedUrl);
-            }
-            $siteUrl = $uri->attachSchemeIfNotExist($siteUrl);
-
             $blog = new Blog();
-            $blog->title = $feed->title;
-            $blog->site_url = $siteUrl;
-            $blog->feed_url = $feedUrl;
-            $blog->type = $type;
-            $blog->save();
+            $blog = $blog->create($blogInfo);
+            $this->updateBlog($blog);
 
-            \Artisan::call('crawlfeed:run');
-
-        } catch (QueryException $e) {
-
-            $this->lastError = "데이터베이스 오류입니다.";
-            if ($e->getCode() === '23000') {
-                $this->lastError = "중복된 url이거나 title입니다";
-            }
+        } catch ( \Exception $e ) {
+            $this->lastError = $e->getMessage();
             return false;
-
-        } catch (\Exception $e) {
-
-            if ($e->getMessage() == 'String could not be parsed as XML') {
-                $this->lastError = '부적합한 RSS 주소 입니다.';
-            } else {
-                \Log::error($e);
-                $this->lastError = '알 수 없는 예외 발생.';
-            }
-            return false;
-
         }
 
         return true;
+    }
+
+    private function getBlogInfo($url)
+    {
+        $blogInfo = null;
+
+        try {
+            $feed = ZendReader::import($url);
+
+            $feedUrl = $feed->getFeedLink();
+            if (!strpos($feedUrl, '://')) {
+                $uri = new Uri($url);
+                $feedUrl = $uri->getScheme() . '://' . $uri->getHost().$feedUrl;
+            }
+
+            $uri = new Uri($feedUrl);
+            $siteUrl = $uri->getScheme().'://'.$uri->getHost();
+
+            $blogInfo = [
+                'title' => $feed->getTitle(),
+                'feed_url' => $feedUrl,
+                'site_url' => $siteUrl
+            ];
+
+        } catch ( \Exception $e ) {
+            return null;
+        }
+
+        return $blogInfo;
+    }
+
+    public function updateAllblogs()
+    {
+        $blogs = $this->blogs();
+
+        foreach($blogs as $blog)
+        {
+            $this->updateBlog($blog);
+        }
+    }
+
+    public function updateBlog($blog)
+    {
+        $feed = ZendReader::import($blog->feed_url);
+
+        foreach($feed as $entry)
+        {
+            $blogUri = new Uri($blog->feed_url);
+            $articleUri = new Uri($entry->getLink());
+            $link = $blogUri->join($articleUri)->__toString();
+            $description = $entry->getDescription();
+
+            $article = Article::where('blog_id', $blog->id)
+                ->where('link', $link)
+                ->first();
+
+            if (empty($article)) {
+                Article::create([
+                    'title'       => $entry->getTitle(),
+                    'link'        => $link,
+                    'description' => $description,
+                    'blog_id'     => $blog->id
+                ]);
+            } else {
+                if($article->title != $entry->getTitle() || $article->description != $description ) {
+                    $article->title = $entry->getTitle();
+                    $article->description = $description;
+                    $article->save();
+                }
+            }
+        }
     }
 }

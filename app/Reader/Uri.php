@@ -23,6 +23,18 @@ class Uri
         return $uri->getScheme($url);
     }
 
+    public function getPath($url)
+    {
+        $uri = new \Wandu\Http\Uri($url);
+        return $uri->getPath($url);
+    }
+
+    public function getQuery($url)
+    {
+        $uri = new \Wandu\Http\Uri($url);
+        return $uri->getQuery($url);
+    }
+
     public function attachSchemeIfNotExist($url)
     {
         $uri = new \Wandu\Http\Uri($url);

@@ -12,7 +12,7 @@
                 <ul class="articleList">
                 @foreach($articles as $article)
                     <li>
-                        <p class="title"><a href="//{{\App\Reader\Article::makeArticleLink($article)}}"><span style="font-weight: bold">{{$article->title}}</span></a></p>
+                        <p class="title"><a href="{{$article->link}}"><span style="font-weight: bold">{{$article->title}}</span></a></p>
                         <p class="info">{{$article->blog->title}} {{$article->created_at}}</p>
                         <p class="description">{{strip_tags($article->description)}}</p>
                     </li>
@@ -30,8 +30,8 @@
                         <ul class="blogList">
                             @foreach($blogs as $blog)
                                 <li>
-                                    @if($blog->host)
-                                        <a href="//{{$blog->host}}">{{$blog->title}}</a>
+                                    @if($blog->site_url)
+                                        <a href="{{$blog->site_url}}">{{$blog->title}}</a>
                                     @else
                                         {{$blog->title}}
                                     @endif

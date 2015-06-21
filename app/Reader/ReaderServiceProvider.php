@@ -22,7 +22,7 @@ class ReaderServiceProvider extends ServiceProvider {
 	public function register()
 	{
         $this->app->singleton(\App\Reader\IReader::class, function ($app) {
-            return new \App\Reader\KooReader();
+            return new \App\Reader\Reader();
         });
 	}
 
