@@ -17,9 +17,8 @@ class Article extends Model
         return $this->belongsTo('App\Reader\Blog');
     }
 
-    public static function makeArticleLink($article)
+    public function Tags()
     {
-        $uri = new \App\Reader\Uri();
-        return $uri->getHost($article->blog->site_url).$article->link;
+        return $this->belongsToMany('App\Reader\Tag');
     }
 }
