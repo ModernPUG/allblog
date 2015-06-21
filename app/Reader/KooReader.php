@@ -49,6 +49,7 @@ class KooReader extends Reader implements IReader
 
             //TODO: 아놔 get_class 썼음.. DB에게 type을 알려줘야 스케쥴러가 돌수 있기 때문인데 나중에 스케쥴러 zend로 바꾸면서 없애자
             $feed = ZendReader::import($url);
+            $type = '';
             switch ( get_class($feed) ) {
                 case 'Zend\Feed\Reader\Feed\Rss':
                     $type = 'rss';
