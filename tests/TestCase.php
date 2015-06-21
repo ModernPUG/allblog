@@ -18,7 +18,8 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
     protected function clearDatabase()
     {
-        Artisan::call('migrate:refresh');
+        Artisan::call('clear_db');
+        Artisan::call('migrate');
         $this->seed();
     }
 }
