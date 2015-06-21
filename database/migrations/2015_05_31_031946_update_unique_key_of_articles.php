@@ -32,21 +32,6 @@ class UpdateUniqueKeyOfArticles extends Migration
      */
     public function down()
     {
-        Schema::table('articles', function ($table) {
-            $conn = Schema::getConnection();
-            $dbSchemaManager = $conn->getDoctrineSchemaManager();
-            $doctrineTable = $dbSchemaManager->listTableDetails('articles');
 
-            if ($doctrineTable->hasIndex('articles_blog_id_link_unique')) {
-                $table->dropForeign('articles_blog_id_foreign');
-                $table->dropUnique(['blog_id', 'link']);
-            }
-
-            if ($doctrineTable->hasIndex('articles_link_unique') == false) {
-                Schema::table('articles', function (Blueprint $table) {
-                    $table->unique('link');
-                });
-            }
-        });
     }
 }

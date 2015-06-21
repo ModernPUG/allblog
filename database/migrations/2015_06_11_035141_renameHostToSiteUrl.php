@@ -27,11 +27,6 @@ class RenameHostToSiteUrl extends Migration
      */
     public function down()
     {
-        Schema::table('blogs', function ($table) {
-            $table->renameColumn('feed_url', 'url');
-            $table->renameColumn('site_url', 'host');
-            $table->dropColumn('type');
-            $table->boolean('atom');
-        });
+
     }
 }

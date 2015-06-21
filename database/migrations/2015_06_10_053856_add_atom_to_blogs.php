@@ -25,8 +25,6 @@ class AddAtomToBlogs extends Migration
      */
     public function down()
     {
-        Schema::table('blogs', function (Blueprint $table) {
-            $table->dropColumn('atom');
-        });
+
     }
 }

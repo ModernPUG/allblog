@@ -25,6 +25,6 @@ class CreateBlogModelsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('blog_models');
+
     }
 }
