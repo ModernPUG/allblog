@@ -145,7 +145,7 @@ return [
         'App\Providers\EventServiceProvider',
         'App\Providers\RouteServiceProvider',
 
-        \Koojunho\Reader\ReaderServiceProvider::class,
+        \ModernPUG\FeedReader\ReaderServiceProvider::class,
 
     ],
 

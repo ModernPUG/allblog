@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use Koojunho\Reader\IReader;
+use ModernPUG\FeedReader\IReader;
 use Illuminate\Console\Command;
 
 class CrawlFeed extends Command

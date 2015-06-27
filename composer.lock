@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5798a9d6d3df8ca168d935d702eccb94",
+    "hash": "248940b261cef26b981c0cc0dc8c8351",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -408,35 +408,6 @@
                 "tokenizer"
             ],
             "time": "2015-03-11 20:06:43"
-        },
-        {
-            "name": "koojunho/reader",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/koojunho/reader.git",
-                "reference": "bbb0d1943d4cfeb003d4644d63c8a6875778b5fc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/koojunho/reader/zipball/bbb0d1943d4cfeb003d4644d63c8a6875778b5fc",
-                "reference": "bbb0d1943d4cfeb003d4644d63c8a6875778b5fc",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Koojunho\\Reader\\": "/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Koo Jun Ho",
-                    "email": "kneadtruth@gmail.com"
-                }
-            ],
-            "time": "2015-06-27 07:18:25"
         },
         {
             "name": "laravel/framework",
@@ -3826,7 +3797,6 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "wandu/http": 20,
-        "koojunho/reader": 20,
         "doctrine/dbal": 20
     },
     "prefer-stable": false,

@@ -8,8 +8,7 @@
 		"laravel/framework": "5.0.*",
         "wandu/http": "1.0.*@dev",
 		"zendframework/zend-feed": "^2.5",
-		"zendframework/zend-http": "^2.5",
-		"koojunho/reader": "dev-master"
+		"zendframework/zend-http": "^2.5"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",

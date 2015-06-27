@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Koojunho\Reader\IReader;
+use ModernPUG\FeedReader\IReader;
 
 class ArticleController extends Controller
 {

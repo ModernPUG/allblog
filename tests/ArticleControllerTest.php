@@ -6,7 +6,7 @@ class ArticleControllerTest extends TestCase
     {
         parent::setUp();
         $this->clearDatabase();
-        $this->app->bind('Koojunho\Reader\IReader', 'Koojunho\Reader\Reader');
+        $this->app->bind('ModernPUG\FeedReader\IReader', 'ModernPUG\FeedReader\Reader');
     }
 
     public function testIndex()

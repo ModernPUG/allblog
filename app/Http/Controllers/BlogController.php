@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Koojunho\Reader\IReader;
+use ModernPUG\FeedReader\IReader;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
