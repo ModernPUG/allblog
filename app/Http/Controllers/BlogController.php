@@ -1,4 +1,6 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers;
 
 use App\Reader\IReader;
 use Illuminate\Http\Request;
@@ -13,6 +15,7 @@ class BlogController extends Controller
     public function index(IReader $reader)
     {
         $blogs = $reader->blogs();
+
         return view('blogs.index', compact('blogs'));
     }
 
@@ -24,9 +27,10 @@ class BlogController extends Controller
     public function store(IReader $reader, Request $request)
     {
         $redirect = redirect('/blog');
-        if ( !$reader->insertFeed($request->all()) ) {
+        if (!$reader->insertFeed($request->all())) {
             $redirect->with('message', $reader->getLastError());
         }
+
         return $redirect;
     }
 }

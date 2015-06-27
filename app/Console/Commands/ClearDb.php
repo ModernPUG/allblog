@@ -1,4 +1,6 @@
-<?php namespace App\Console\Commands;
+<?php
+
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use DB;
@@ -14,8 +16,7 @@ class ClearDb extends Command
     {
         $tables = DB::select('SHOW TABLES');
 
-        foreach($tables as $table)
-        {
+        foreach ($tables as $table) {
             $key = key($table);
             Schema::drop($table->$key);
         }

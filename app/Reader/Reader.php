@@ -16,7 +16,7 @@ class Reader implements IReader
 
     public function getCreateViewName()
     {
-        return "blogs.create";
+        return 'blogs.create';
     }
 
     public function recentUpdatedArticles()
@@ -35,6 +35,7 @@ class Reader implements IReader
 
         if (empty($url)) {
             $this->lastError = '누락된 값이 있습니다.';
+
             return false;
         }
 
@@ -50,9 +51,9 @@ class Reader implements IReader
             $blog = new Blog();
             $blog = $blog->create($blogInfo);
             $this->updateBlog($blog);
-
         } catch (\Exception $e) {
             $this->lastError = $e->getMessage();
+
             return false;
         }
 
@@ -69,20 +70,19 @@ class Reader implements IReader
             $feedUrl = $feed->getFeedLink();
             if (!strpos($feedUrl, '://')) {
                 $uri = new Uri($url);
-                $feedUrl = $uri->getScheme() . '://' . $uri->getHost() . $feedUrl;
+                $feedUrl = $uri->getScheme().'://'.$uri->getHost().$feedUrl;
             }
 
             $uri = new Uri($feedUrl);
-            $siteUrl = $uri->getScheme() . '://' . $uri->getHost();
+            $siteUrl = $uri->getScheme().'://'.$uri->getHost();
 
             $blogInfo = [
-                'title'    => $feed->getTitle(),
+                'title' => $feed->getTitle(),
                 'feed_url' => $feedUrl,
-                'site_url' => $siteUrl
+                'site_url' => $siteUrl,
             ];
-
         } catch (\Exception $e) {
-            return null;
+            return;
         }
 
         return $blogInfo;
@@ -114,11 +114,11 @@ class Reader implements IReader
 
             if (empty($article)) {
                 $article = Article::create([
-                    'title'        => $entry->getTitle(),
-                    'link'         => $link,
-                    'description'  => $description,
+                    'title' => $entry->getTitle(),
+                    'link' => $link,
+                    'description' => $description,
                     'published_at' => $published_at,
-                    'blog_id'      => $blog->id
+                    'blog_id' => $blog->id,
                 ]);
 
                 foreach ($entry->getCategories() as $category) {
@@ -126,7 +126,7 @@ class Reader implements IReader
 
                     if (empty($tag)) {
                         $tag = Tag::create([
-                            'name' => $category['label']
+                            'name' => $category['label'],
                         ]);
                     } else {
                         $tag = Tag::where('name', $category['label'])->first();
@@ -134,7 +134,6 @@ class Reader implements IReader
 
                     $article->tags()->attach($tag['id']);
                 }
-
             } else {
                 if ($article->title != $entry->getTitle() || $article->description != $description) {
                     $article->title = $entry->getTitle();

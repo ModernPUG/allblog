@@ -1,4 +1,6 @@
-<?php namespace App\Reader;
+<?php
+
+namespace App\Reader;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,7 +11,7 @@ class Article extends Model
         'link',
         'description',
         'published_at',
-        'blog_id'
+        'blog_id',
     ];
 
     public function blog()

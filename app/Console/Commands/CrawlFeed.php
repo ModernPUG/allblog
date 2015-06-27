@@ -1,11 +1,9 @@
-<?php namespace App\Console\Commands;
+<?php
 
-use App\Reader\Article;
-use App\Reader\Blog;
+namespace App\Console\Commands;
+
 use App\Reader\IReader;
-use Feed;
 use Illuminate\Console\Command;
-use Wandu\Http\Uri;
 
 class CrawlFeed extends Command
 {

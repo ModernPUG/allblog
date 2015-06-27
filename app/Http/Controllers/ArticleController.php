@@ -1,4 +1,6 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers;
 
 use App\Reader\IReader;
 
@@ -8,6 +10,7 @@ class ArticleController extends Controller
     {
         $articles = $reader->recentUpdatedArticles();
         $blogs = $reader->blogs();
+
         return view('articles.index', compact('articles', 'blogs'));
     }
 }
