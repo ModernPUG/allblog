@@ -6,7 +6,7 @@ class BlogControllerTest extends TestCase
     {
         parent::setUp();
         $this->clearDatabase();
-        $this->app->bind('App\IReader', 'App\Reader');
+        $this->app->bind('Koojunho\Reader\IReader', 'Koojunho\Reader\Reader');
     }
 
     public function testIndex()

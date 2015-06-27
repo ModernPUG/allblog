@@ -145,7 +145,7 @@ return [
         'App\Providers\EventServiceProvider',
         'App\Providers\RouteServiceProvider',
 
-        \App\Reader\ReaderServiceProvider::class,
+        \Koojunho\Reader\ReaderServiceProvider::class,
 
     ],
 
