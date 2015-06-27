@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c2034647f21f4ff39f291bab8eba0269",
+    "hash": "10f38764b5547a6e61b3cc0482dc7dc8",
     "packages": [
         {
             "name": "ModernPUG/FeedReader",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ModernPUG/FeedReader.git",
-                "reference": "9f3ef3c66657809544b518d78c60b52a6bc25d6a"
+                "reference": "b3c932770113b0c1c971288a9e2bde3096786be2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ModernPUG/FeedReader/zipball/9f3ef3c66657809544b518d78c60b52a6bc25d6a",
-                "reference": "9f3ef3c66657809544b518d78c60b52a6bc25d6a",
+                "url": "https://api.github.com/repos/ModernPUG/FeedReader/zipball/b3c932770113b0c1c971288a9e2bde3096786be2",
+                "reference": "b3c932770113b0c1c971288a9e2bde3096786be2",
                 "shasum": ""
             },
             "type": "library",
@@ -36,7 +36,7 @@
                 "source": "https://github.com/ModernPUG/FeedReader/tree/master",
                 "issues": "https://github.com/ModernPUG/FeedReader/issues"
             },
-            "time": "2015-06-27 12:49:24"
+            "time": "2015-06-27 13:10:21"
         },
         {
             "name": "classpreloader/classpreloader",
