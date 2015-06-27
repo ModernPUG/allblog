@@ -16,7 +16,7 @@ class BlogController extends Controller
     {
         $blogs = $reader->blogs();
 
-        return view('blogs.index', compact('blogs'));
+        return view('fdrdr::blogs.index', compact('blogs'));
     }
 
     public function create(IReader $reader)

@@ -11,6 +11,6 @@ class ArticleController extends Controller
         $articles = $reader->recentUpdatedArticles();
         $blogs = $reader->blogs();
 
-        return view('articles.index', compact('articles', 'blogs'));
+        return view('fdrdr::articles.index', compact('articles', 'blogs'));
     }
 }
