@@ -4,8 +4,40 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "248940b261cef26b981c0cc0dc8c8351",
+    "hash": "c2034647f21f4ff39f291bab8eba0269",
     "packages": [
+        {
+            "name": "ModernPUG/FeedReader",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ModernPUG/FeedReader.git",
+                "reference": "9f3ef3c66657809544b518d78c60b52a6bc25d6a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ModernPUG/FeedReader/zipball/9f3ef3c66657809544b518d78c60b52a6bc25d6a",
+                "reference": "9f3ef3c66657809544b518d78c60b52a6bc25d6a",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ModernPUG\\FeedReader\\": "/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "Koo Jun Ho",
+                    "email": "kneadtruth@gmail.com"
+                }
+            ],
+            "support": {
+                "source": "https://github.com/ModernPUG/FeedReader/tree/master",
+                "issues": "https://github.com/ModernPUG/FeedReader/issues"
+            },
+            "time": "2015-06-27 12:49:24"
+        },
         {
             "name": "classpreloader/classpreloader",
             "version": "1.4.0",
@@ -3797,6 +3829,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "wandu/http": 20,
+        "modernpug/feedreader": 20,
         "doctrine/dbal": 20
     },
     "prefer-stable": false,
