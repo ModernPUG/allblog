@@ -8,12 +8,21 @@
 
 ### 다운로드
 ````
+//allblog 프로젝트 다운로드
 git clone https://github.com/ModernPUG/allblog.git
+
+//FeedReader 패키지 다운로드 (FeedReader 패키지를 독립적인 패키지로 분리하여 관리할 계획이나, 개발의 편의를 위해 FeedReader 패키지를 packages/ModernPUG 폴더에 다운 받습니다.) 
+cd allblog
+mkdir -p packages/ModernPUG
+cd packages/ModernPug
+git clone https://github.com/ModernPUG/FeedReader.git
 ````
 
 ### 의존 패키지 설치
 
 프로젝트 루트 폴더에서 `composer install` 을 실행
+
+packages/ModernPUG/FeedReader 폴더에서 `composer install`을 실행
 
 ### DB 만들기
 
