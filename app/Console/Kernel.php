@@ -14,7 +14,6 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         'App\Console\Commands\Inspire',
-        'App\Console\Commands\CrawlFeed',
         'App\Console\Commands\ClearDb',
         'App\Console\Commands\RefreshDb',
     ];
