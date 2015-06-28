@@ -24,13 +24,14 @@ return [
     ],
 
     'ses' => [
-        'key' => '',
+        'key'    => '',
         'secret' => '',
         'region' => 'us-east-1',
     ],
 
     'stripe' => [
-        'model'  => 'App\User',
+        'model'  => App\User::class,
+        'key'    => '',
         'secret' => '',
     ],
 

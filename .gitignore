@@ -1,7 +1,4 @@
 /vendor
 /node_modules
+Homestead.yaml
 .env
-.idea
-*.iml
-php-cs-fixer.phar
-tests/_output/*

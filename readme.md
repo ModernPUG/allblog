@@ -1,98 +1,27 @@
-## PHP 블로거 글 모음 웹사이트 
+## Laravel PHP Framework
 
-매주 일요일 오전 10시 홍대인근 카페에 모여 라라벨을 학습할 목적으로 만들고 개선하고 있습니다.
+[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
+[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
+[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
+[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
+[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
 
-버그 제보나 개선 제안은 이슈에 등록해주세요.
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
 
-## 로컬 환경 설정
+Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
 
-### 다운로드
-````
-//allblog 프로젝트 다운로드
-git clone https://github.com/ModernPUG/allblog.git
+## Official Documentation
 
-/*
- * FeedReader 패키지 다운로드 
- * (FeedReader 패키지를 독립적인 패키지로 분리하여 관리할 계획이나, 
- * 개발의 편의를 위해 FeedReader 패키지를 packages/ModernPUG 폴더에 다운 받습니다. 
- * FeedReader 패키지 내의 파일을 수정한 경우 allblog 가 아닌 FeedReader 패키지에 커밋 & 푸시 해주셔야 합니다.)
- */ 
-cd allblog
-mkdir -p packages/ModernPUG
-cd packages/ModernPug
-git clone https://github.com/ModernPUG/FeedReader.git
-````
+Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
 
-### 의존 패키지 설치
+## Contributing
 
-프로젝트 루트 폴더에서 `composer install` 을 실행
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
 
-packages/ModernPUG/FeedReader 폴더에서 `composer install`을 실행
+## Security Vulnerabilities
 
-### DB 만들기
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
-#### 로컬 서버용 DB 생성
+### License
 
-MySQL에 db생성권한이 있는 계정으로 접근하여 다음 명령 실행 필요
-
-````
-mysql> CREATE DATABASE allblog;
-
-mysql> CREATE USER 'allblog'@'localhost' IDENTIFIED BY 'password';
-
-mysql> GRANT ALL PRIVILEGES ON allblog.* TO 'allblog'@'localhost';
-
-mysql> FLUSH PRIVILEGES;
-````
-
-#### 테스트용 DB 생성
-
-MySQL에 db생성권한이 있는 계정으로 접근하여 다음 명령 실행 필요
-
-````
-mysql> CREATE DATABASE allblog_test;
-
-mysql> CREATE USER 'allblog_test'@'localhost' IDENTIFIED BY 'password';
-
-mysql> GRANT ALL PRIVILEGES ON allblog_test.* TO 'allblog_test'@'localhost';
-
-mysql> FLUSH PRIVILEGES;
-````
-
-#### .env 에 DB 관련 설정 변경
-
-`.env.example` 파일을 복사해서 `.env` 파일을 만듦
-
-`.env` 파일에서 DB 관련 설정을 아래와 같이 변경
-
-````
-DB_DATABASE=allblog
-DB_USERNAME=allblog
-DB_PASSWORD=password
-````
-
-#### 패키지에 존재하는 리소스들 복사해옴
-````
-php artisan vendor:publish 
-````
-
-
-#### 마이그레이션
-
-````
-$ php artisan migrate
-
-$ php artisan migrate --database="allblog_test"
-
-$ php artisan migrate --path=packages/ModernPUG/FeedReader/migrations
-
-$ php artisan migrate --path=packages/ModernPUG/FeedReader/migrations --database="allblog_test"
-````
-
-### storage 폴더 권한 조정
-
-`chmod -R 755 storage`
-
-### 오토로드 갱신
-
-클래스를 찾을 수 없다는 에러 메시지 발생시 프로젝트 루트 폴더에서 `composer dump` 를 실행하여 오토로드를 갱신
+The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
