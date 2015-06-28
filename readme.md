@@ -12,11 +12,11 @@
 git clone https://github.com/ModernPUG/allblog.git
 
 /*
-* FeedReader 패키지 다운로드 
-* (FeedReader 패키지를 독립적인 패키지로 분리하여 관리할 계획이나, 
-* 개발의 편의를 위해 FeedReader 패키지를 packages/ModernPUG 폴더에 다운 받습니다. 
-* FeedReader 패키지 내의 파일을 수정한 경우 allblog 가 아닌 FeedReader 패키지에 커밋 & 푸시 해주셔야 합니다.)
-*/ 
+ * FeedReader 패키지 다운로드 
+ * (FeedReader 패키지를 독립적인 패키지로 분리하여 관리할 계획이나, 
+ * 개발의 편의를 위해 FeedReader 패키지를 packages/ModernPUG 폴더에 다운 받습니다. 
+ * FeedReader 패키지 내의 파일을 수정한 경우 allblog 가 아닌 FeedReader 패키지에 커밋 & 푸시 해주셔야 합니다.)
+ */ 
 cd allblog
 mkdir -p packages/ModernPUG
 cd packages/ModernPug
