@@ -12,6 +12,7 @@
     <testsuites>
         <testsuite name="Application Test Suite">
             <directory>./tests/</directory>
+            <directory>./packages/ModernPUG/FeedReader/tests/</directory>
         </testsuite>
     </testsuites>
     <php>
