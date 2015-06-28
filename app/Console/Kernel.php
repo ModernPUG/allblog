@@ -14,6 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \App\Console\Commands\Inspire::class,
+        \App\Console\Commands\ClearDb::class',
+        \App\Console\Commands\RefreshDb::class,
     ];
 
     /**
@@ -26,5 +28,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('inspire')
                  ->hourly();
+
+        $schedule->command('crawlfeed:run')
+            ->hourly();
     }
 }
