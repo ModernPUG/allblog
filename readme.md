@@ -66,6 +66,12 @@ DB_USERNAME=allblog
 DB_PASSWORD=password
 ````
 
+#### 패키지에 존재하는 리소스들 복사해옴
+````
+php artisan vendor:publish 
+````
+
+
 #### 마이그레이션
 
 ````
