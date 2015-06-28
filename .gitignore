@@ -4,3 +4,4 @@
 .idea
 *.iml
 php-cs-fixer.phar
+tests/_output/*
