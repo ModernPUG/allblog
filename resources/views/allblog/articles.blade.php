@@ -17,7 +17,7 @@
                         {{$article->title}}
                     </h2>
                     <h3 class="post-subtitle">
-                        {{strip_tags($article->description)}}
+                        {{mb_strcut(strip_tags($article->description),0,150).'...'}}
                     </h3>
                 </a>
                 <p class="post-meta">Posted by <a href="{{$article->blog->site_url}}" target="_blank">{{$article->blog->title}}</a> on {{$article->published_at}}</p>
