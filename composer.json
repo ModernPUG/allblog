@@ -7,7 +7,10 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-        "modern-pug/feed-reader": "*"
+	  "zendframework/zend-feed": "^2.5",
+	  "zendframework/zend-http": "^2.5",
+	  "wandu/http": "1.0.*@dev",
+        "doctrine/dbal": "~2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
