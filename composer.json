@@ -9,7 +9,7 @@
         "laravel/framework": "5.1.*",
 	  "zendframework/zend-feed": "^2.5",
 	  "zendframework/zend-http": "^2.5",
-	  "wandu/http": "1.0.*@dev",
+	  "wandu/http": "0.4.3",
         "doctrine/dbal": "~2.3"
     },
     "require-dev": {
