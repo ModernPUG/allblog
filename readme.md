@@ -82,11 +82,7 @@ php artisan vendor:publish
 ````
 $ php artisan migrate
 
-$ php artisan migrate --database="allblog_test"
-
-$ php artisan migrate --path=packages/ModernPUG/FeedReader/migrations
-
-$ php artisan migrate --path=packages/ModernPUG/FeedReader/migrations --database="allblog_test"
+$ php artisan migrate --path=database/migrations/ModernPUG/FeedReader/
 ````
 
 ### storage 폴더 권한 조정
