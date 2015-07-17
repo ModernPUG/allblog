@@ -19,7 +19,7 @@ git clone https://github.com/ModernPUG/allblog.git
  */ 
 cd allblog
 mkdir -p packages/ModernPUG
-cd packages/ModernPug
+cd packages/ModernPUG
 git clone https://github.com/ModernPUG/FeedReader.git
 ````
 
