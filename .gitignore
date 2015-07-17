@@ -5,3 +5,5 @@
 *.iml
 php-cs-fixer.phar
 tests/_output/*
+database/migrations/*
+!database/migrations/*.php
