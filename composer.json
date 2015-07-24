@@ -7,10 +7,8 @@
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
-	  "zendframework/zend-feed": "^2.5",
-	  "zendframework/zend-http": "^2.5",
-	  "wandu/http": "0.4.3",
-        "doctrine/dbal": "~2.3"
+        "doctrine/dbal": "~2.3",
+        "modern-pug/feed-reader": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -23,8 +21,7 @@
             "database"
         ],
         "psr-4": {
-            "App\\": "app/",
-            "": "packages/"
+            "App\\": "app/"
         }
     },
     "autoload-dev": {
