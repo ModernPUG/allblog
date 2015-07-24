@@ -12,7 +12,7 @@
 
             @foreach($articles as $article)
             <div class="post-preview">
-                <a href="{{$article->link}}" target="_blank">
+                <a href="{{ url("article/{$article->id}") }}" target="_blank">
                     <h2 class="post-title">
                         {{$article->title}}
                     </h2>
