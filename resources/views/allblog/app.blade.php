@@ -60,6 +60,9 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="{{ url('/best/lastweek') }}">Week Best</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
                     <li><a href="{{ url('/auth/login') }}">Login</a></li>
@@ -82,9 +85,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="site-heading">
-                    <h1>join('♥', $blogs);</h1>
-                    <hr class="small">
-                    <span class="subheading">PHP 블로그 글모음</span>
+                    @yield('jumbotron')
                 </div>
             </div>
         </div>
