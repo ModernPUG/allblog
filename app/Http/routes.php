@@ -21,3 +21,6 @@ Route::get('home', 'ArticleController@index');
 Route::resource('blog', 'BlogController');
 Route::resource('article', 'ArticleController');
 Route::get('/best/lastweek', 'ArticleController@bestLastWeek');
+Route::get('/slack', function() {
+    Slack::send('Laravel에서 봇이 쐈습니다');
+});
