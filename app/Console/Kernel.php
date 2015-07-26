@@ -31,5 +31,8 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('crawlfeed:run')
             ->hourly();
+
+        $schedule->command('send:slack:best')
+            ->weeklyOn(1,'7:00');
     }
 }
