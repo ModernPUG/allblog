@@ -33,6 +33,6 @@ class Kernel extends ConsoleKernel
             ->hourly();
 
         $schedule->command('send:slack:best')
-            ->weeklyOn(1,'7:00');
+            ->weeklyOn(1, '7:00');
     }
 }

@@ -1,9 +1,9 @@
+php-cs-fixer
 /vendor
 /node_modules
 .env
 .idea
 *.iml
-php-cs-fixer.phar
 tests/_output/*
 database/migrations/*
 !database/migrations/*.php
