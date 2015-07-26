@@ -8,7 +8,8 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
         "doctrine/dbal": "~2.3",
-        "modern-pug/feed-reader": "dev-master"
+        "modern-pug/feed-reader": "dev-master",
+        "koojunho/laravel-csfix-artisan": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
