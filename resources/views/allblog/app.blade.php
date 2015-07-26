@@ -61,7 +61,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="{{ url('/best/lastweek') }}">Week Best</a></li>
+                <li><a href="{{ url('/best/lastweek') }}">Weekly Best</a></li>
+                <li><a href="{{ url('/blog') }}">Blogs</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
