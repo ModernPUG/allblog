@@ -2,9 +2,9 @@
 
 
 @section('jumbotron')
-<h1>지난 7일간 베스트글</h1>
+<h1>Weekly Best</h1>
 <hr class="small">
-<span class="subheading">지난 7일간</span>
+<span class="subheading">지난 7일간 가장 인기 있었던 글목록</span>
 @endsection
 
 
