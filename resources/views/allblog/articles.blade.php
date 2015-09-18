@@ -28,7 +28,9 @@
                         {{mb_strcut(strip_tags($article->description),0,150).'...'}}
                     </h3>
                 </a>
+                @if(isset($article->blog))
                 <p class="post-meta">Posted by <a href="{{$article->blog->site_url}}" target="_blank">{{$article->blog->title}}</a> on {{$article->published_at}}</p>
+                @endif
             </div>
             <hr>
             @endforeach
