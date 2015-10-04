@@ -1234,12 +1234,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ModernPUG/FeedReader.git",
-                "reference": "90225bab77e79e28e2edbe1dfce257a78a0b25b8"
+                "reference": "e1890a4ec72f48f1cf3ca2df05973ce92c93aedc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ModernPUG/FeedReader/zipball/90225bab77e79e28e2edbe1dfce257a78a0b25b8",
-                "reference": "90225bab77e79e28e2edbe1dfce257a78a0b25b8",
+                "url": "https://api.github.com/repos/ModernPUG/FeedReader/zipball/e1890a4ec72f48f1cf3ca2df05973ce92c93aedc",
+                "reference": "e1890a4ec72f48f1cf3ca2df05973ce92c93aedc",
                 "shasum": ""
             },
             "require": {
@@ -1264,7 +1264,7 @@
                     "email": "kneadtruth@gmail.com"
                 }
             ],
-            "time": "2015-10-04 03:40:42"
+            "time": "2015-10-04 07:18:16"
         },
         {
             "name": "monolog/monolog",
