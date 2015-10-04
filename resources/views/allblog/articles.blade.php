@@ -18,6 +18,11 @@
             {{Session('message')}}
             @endif
 
+            <ul class="nav nav-pills">
+                <li role="presentation" {!! $tag == 'php' ? 'class="active"' : '' !!}><a href="/?tag=php">PHP</a></li>
+                <li role="presentation" {!! $tag == 'all' ? 'class="active"' : '' !!}><a href="/?tag=all">All</a></li>
+            </ul>
+
             @foreach($articles as $article)
             <div class="post-preview">
                 <a href="{{ url("article/{$article->id}") }}" target="_blank">
@@ -35,7 +40,7 @@
             <hr>
             @endforeach
             <!-- Pager -->
-            <?php echo $articles->render();?>
+            <?php echo $pagination;?>
         </div>
 
     </div>
