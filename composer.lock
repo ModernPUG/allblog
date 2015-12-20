@@ -224,12 +224,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "fb8eaa0b612b543d10f09df8eb16b47dd976e97a"
+                "reference": "bc23e0f46da064cbc53c1b1243472477487ef754"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/doctrine/cache/zipball/bc23e0f46da064cbc53c1b1243472477487ef754",
-                "reference": "fb8eaa0b612b543d10f09df8eb16b47dd976e97a",
+                "reference": "bc23e0f46da064cbc53c1b1243472477487ef754",
                 "shasum": ""
             },
             "require": {
@@ -286,7 +286,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2015-12-10 07:11:12"
+            "time": "2015-12-19 04:57:29"
         },
         {
             "name": "doctrine/collections",
@@ -973,12 +973,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "d7e7c3dd20fa02d6d3f756df5c626db7429642bf"
+                "reference": "09ef5f6829be65c86a5f762b891cdec062954699"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/09ef5f6829be65c86a5f762b891cdec062954699",
-                "reference": "d7e7c3dd20fa02d6d3f756df5c626db7429642bf",
+                "reference": "09ef5f6829be65c86a5f762b891cdec062954699",
                 "shasum": ""
             },
             "require": {
@@ -1093,7 +1093,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-12-18 20:07:43"
+            "time": "2015-12-19 22:27:14"
         },
         {
             "name": "league/flysystem",
@@ -1101,12 +1101,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "32a5c21a7929cd05569065e3080fa24cb7a21c19"
+                "reference": "183e1a610664baf6dcd6fceda415baf43cbdc031"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/183e1a610664baf6dcd6fceda415baf43cbdc031",
-                "reference": "32a5c21a7929cd05569065e3080fa24cb7a21c19",
+                "reference": "183e1a610664baf6dcd6fceda415baf43cbdc031",
                 "shasum": ""
             },
             "require": {
@@ -1120,7 +1120,7 @@
                 "mockery/mockery": "~0.9",
                 "phpspec/phpspec": "^2.2",
                 "phpspec/prophecy-phpunit": "~1.0",
-                "phpunit/phpunit": "~4.1"
+                "phpunit/phpunit": "~4.8"
             },
             "suggest": {
                 "ext-fileinfo": "Required for MimeType",
@@ -1177,7 +1177,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2015-12-18 21:52:17"
+            "time": "2015-12-19 20:16:43"
         },
         {
             "name": "maknz/slack",
@@ -1234,12 +1234,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ModernPUG/FeedReader.git",
-                "reference": "04d3675ca322c31b1e923328cb80c9e8c68099d6"
+                "reference": "40715873cc50c993188ee6971830c29289c736dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ModernPUG/FeedReader/zipball/fd404f7b01069ab2c6ee09063d0390966e6db2ef",
-                "reference": "04d3675ca322c31b1e923328cb80c9e8c68099d6",
+                "url": "https://api.github.com/repos/ModernPUG/FeedReader/zipball/40715873cc50c993188ee6971830c29289c736dc",
+                "reference": "40715873cc50c993188ee6971830c29289c736dc",
                 "shasum": ""
             },
             "require": {
@@ -1264,7 +1264,7 @@
                     "email": "kneadtruth@gmail.com"
                 }
             ],
-            "time": "2015-12-18 21:49:50"
+            "time": "2015-12-20 08:44:24"
         },
         {
             "name": "monolog/monolog",
