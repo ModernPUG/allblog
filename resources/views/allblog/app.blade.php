@@ -135,6 +135,7 @@
 <!-- Custom Theme JavaScript -->
 <script src="/startbootstrap-clean-blog-1.0.3/js/clean-blog.min.js"></script>
 
+@yield('pageJs')
 </body>
 
 </html>

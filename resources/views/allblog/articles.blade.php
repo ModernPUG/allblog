@@ -34,7 +34,12 @@
                     </h3>
                 </a>
                 @if(isset($article->blog))
-                <p class="post-meta">Posted by <a href="{{$article->blog->site_url}}" target="_blank">{{$article->blog->title}}</a> on {{$article->published_at}}</p>
+                <p class="post-meta">
+                    Posted by <a href="{{$article->blog->site_url}}" target="_blank">{{$article->blog->title}}</a> on {{$article->published_at}}
+                </p>
+                @endif
+                @if($tag != 'php' && $article->hasTag($phpTags) == false)
+                    <button class="php_tag_button btn btn-default" data-article-id="{{$article['id']}}">PHP 관련 글로 분류하기</button>
                 @endif
             </div>
             <hr>
@@ -45,4 +50,8 @@
 
     </div>
 </div>
+@endsection
+
+@section('pageJs')
+    <script src="/js/tag-article.js"></script>
 @endsection

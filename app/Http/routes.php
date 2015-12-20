@@ -21,3 +21,4 @@ Route::get('home', 'ArticleController@index');
 Route::resource('blog', 'BlogController');
 Route::resource('article', 'ArticleController');
 Route::get('/best/lastweek', 'ArticleController@bestLastWeek');
+Route::post('/article/tag_php', 'ArticleController@tagPhp');
