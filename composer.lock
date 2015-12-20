@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4a96ea9d335e9234a7591243c46dddd8",
-    "content-hash": "02068e4ef52eee3186b1a719d11c6fee",
+    "hash": "39fd2a280b34b19b01582992075f9a8b",
+    "content-hash": "5ac8c8bf58e77b8fa154e4232bd61353",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -228,7 +228,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/fb8eaa0b612b543d10f09df8eb16b47dd976e97a",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/bc23e0f46da064cbc53c1b1243472477487ef754",
                 "reference": "fb8eaa0b612b543d10f09df8eb16b47dd976e97a",
                 "shasum": ""
             },
@@ -977,7 +977,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/d7e7c3dd20fa02d6d3f756df5c626db7429642bf",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/09ef5f6829be65c86a5f762b891cdec062954699",
                 "reference": "d7e7c3dd20fa02d6d3f756df5c626db7429642bf",
                 "shasum": ""
             },
@@ -1105,7 +1105,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/32a5c21a7929cd05569065e3080fa24cb7a21c19",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/183e1a610664baf6dcd6fceda415baf43cbdc031",
                 "reference": "32a5c21a7929cd05569065e3080fa24cb7a21c19",
                 "shasum": ""
             },
@@ -1238,7 +1238,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ModernPUG/FeedReader/zipball/04d3675ca322c31b1e923328cb80c9e8c68099d6",
+                "url": "https://api.github.com/repos/ModernPUG/FeedReader/zipball/fd404f7b01069ab2c6ee09063d0390966e6db2ef",
                 "reference": "04d3675ca322c31b1e923328cb80c9e8c68099d6",
                 "shasum": ""
             },
@@ -1533,6 +1533,66 @@
                 "random"
             ],
             "time": "2015-12-10 14:48:13"
+        },
+        {
+            "name": "prettus/l5-repository",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andersao/l5-repository.git",
+                "reference": "2bfbf3a638a7be985ced8b28044b7894df019137"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andersao/l5-repository/zipball/2bfbf3a638a7be985ced8b28044b7894df019137",
+                "reference": "2bfbf3a638a7be985ced8b28044b7894df019137",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "~5.0|~5.1",
+                "illuminate/console": "~5.0|~5.1",
+                "illuminate/database": "~5.0|~5.1",
+                "illuminate/filesystem": "~5.0|~5.1",
+                "illuminate/http": "~5.0|~5.1",
+                "illuminate/pagination": "~5.0|~5.1",
+                "illuminate/support": "~5.0|~5.1",
+                "php": ">=5.4.0"
+            },
+            "suggest": {
+                "league/fractal": "Required to use the Fractal Presenter (0.12.*).",
+                "prettus/laravel-validation": "Required to use the Repository Validators (1.1.*)",
+                "robclancy/presenter": "Required to use the Presenter Model (1.3.*)"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "2.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Prettus\\Repository\\": "src/Prettus/Repository/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anderson Andrade",
+                    "email": "contato@andersonandra.de"
+                }
+            ],
+            "description": "Laravel 5 - Repositories to  the database layer",
+            "keywords": [
+                "cache",
+                "eloquent",
+                "laravel",
+                "model",
+                "repository"
+            ],
+            "time": "2015-10-31 02:57:11"
         },
         {
             "name": "psr/http-message",
@@ -4339,7 +4399,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "modern-pug/feed-reader": 20,
-        "koojunho/laravel-csfix-artisan": 20
+        "koojunho/laravel-csfix-artisan": 20,
+        "prettus/l5-repository": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

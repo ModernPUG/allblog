@@ -136,6 +136,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Prettus\Repository\Providers\RepositoryServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -143,7 +144,7 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        ModernPUG\FeedReader\ReaderServiceProvider::class,
+        App\Providers\ReaderServiceProvider::class,
         Maknz\Slack\SlackServiceProvider::class,
         Koojunho\CSFixer\CSFixerServiceProvider::class,
 
