@@ -6254,4 +6254,10 @@ ul.blogList {
   list-style: none;
   padding-left: 0;
 }
+
+.post-preview > a > .post-title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 /*# sourceMappingURL=app.css.map */
