@@ -16,6 +16,7 @@
 
     <!-- Custom CSS -->
     <link href="/startbootstrap-clean-blog-1.0.3/css/clean-blog.min.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
