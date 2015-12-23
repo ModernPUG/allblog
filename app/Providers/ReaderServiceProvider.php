@@ -15,5 +15,8 @@ class ReaderServiceProvider extends ServiceProvider
             \ModernPUG\FeedReader\IReader::class,
             \App\Reader::class
         );
+
+        $this->commands(\ModernPUG\FeedReader\CrawlFeed::class);
+        $this->commands(\ModernPUG\FeedReader\SendSlackBestArticles::class);
     }
 }
