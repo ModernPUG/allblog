@@ -46,4 +46,9 @@ class Tag extends \ModernPUG\FeedReader\Tag implements Transformable
     {
         return $this->phpTags;
     }
+
+    public function getPhpTagCollection()
+    {
+        return $this->whereIn('name', $this->phpTags)->get();
+    }
 }

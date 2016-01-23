@@ -32,5 +32,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\TagRepository::class,
             \App\Repositories\TagRepositoryEloquent::class
         );
+
+        $this->app->bind(
+            \App\Repositories\ViewCountRepository::class,
+            \App\Repositories\ViewCountRepositoryEloquent::class
+        );
     }
 }

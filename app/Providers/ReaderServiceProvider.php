@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Console\Commands\SendSlackBestArticles;
 use Illuminate\Support\ServiceProvider;
 
 class ReaderServiceProvider extends ServiceProvider
@@ -17,6 +18,6 @@ class ReaderServiceProvider extends ServiceProvider
         );
 
         $this->commands(\ModernPUG\FeedReader\CrawlFeed::class);
-        $this->commands(\ModernPUG\FeedReader\SendSlackBestArticles::class);
+        $this->commands(SendSlackBestArticles::class);
     }
 }
