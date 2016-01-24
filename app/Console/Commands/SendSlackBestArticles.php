@@ -20,7 +20,7 @@ class SendSlackBestArticles extends Command
             $phpTagIds[] = $phpTag['id'];
         }
 
-        $articles = $reader->getLastBestArticlesByTags(7, $phpTagIds);
+        $articles = $reader->getLastBestArticlesByTag(7, $phpTagIds);
         $rank = 1;
         $output = "allblog 주간 인기글 입니다. \r\n\r\n";
         foreach ($articles as $article) {
