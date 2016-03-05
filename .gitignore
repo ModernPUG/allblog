@@ -7,3 +7,4 @@ php-cs-fixer
 tests/_output/*
 database/migrations/*
 !database/migrations/*.php
+composer.lock
