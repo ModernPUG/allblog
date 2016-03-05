@@ -146,7 +146,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ReaderServiceProvider::class,
         Maknz\Slack\SlackServiceProvider::class,
-        Koojunho\CSFixer\CSFixerServiceProvider::class,
 
     ],
 
