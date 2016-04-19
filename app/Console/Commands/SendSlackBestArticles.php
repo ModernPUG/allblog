@@ -26,7 +26,7 @@ class SendSlackBestArticles extends Command
         foreach ($articles as $article) {
             $url = url("article/{$article->id}");
             $title = $article->title;
-            $output .= "$rank. $title ( $url )\r\n\r\n";
+            $output .= "$rank. $title($url)\n출처: {$article->blog['title']} \r\n\r\n";
             $rank++;
         }
 
