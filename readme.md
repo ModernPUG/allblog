@@ -6,58 +6,30 @@
 
 ## 로컬 환경 설정
 
-### 다운로드
-````
-//allblog 프로젝트 다운로드
-git clone https://github.com/ModernPUG/allblog.git
+### 다운로드 & 설치
 
-/*
- * FeedReader 패키지 다운로드 
- * (FeedReader 패키지를 독립적인 패키지로 분리하여 관리할 계획이나, 
- * 개발의 편의를 위해 FeedReader 패키지를 packages/ModernPUG 폴더에 다운 받습니다. 
- * FeedReader 패키지 내의 파일을 수정한 경우 allblog 가 아닌 FeedReader 패키지에 커밋 & 푸시 해주셔야 합니다.)
- */ 
+```bash
+# allblog 프로젝트 다운로드
+git clone https://github.com/ModernPUG/allblog.git 
 cd allblog
-mkdir -p packages/ModernPUG
-cd packages/ModernPUG
-git clone https://github.com/ModernPUG/FeedReader.git
-````
-
-### 의존 패키지 설치
-
-프로젝트 루트 폴더에서 `composer install` 을 실행
-
-packages/ModernPUG/FeedReader 폴더에서 `composer install`을 실행
+composer install
+```
 
 ### DB 만들기
 
-#### 로컬 서버용 DB 생성
+#### DB 생성
 
 MySQL에 db생성권한이 있는 계정으로 접근하여 다음 명령 실행 필요
 
-````
-mysql> CREATE DATABASE allblog;
+```sql
+CREATE DATABASE allblog CHARACTER SET utf8 COLLATE utf8_bin;
+  
+CREATE USER 'allblog'@'localhost' IDENTIFIED BY 'password' PASSWORD EXPIRE NEVER;
 
-mysql> CREATE USER 'allblog'@'localhost' IDENTIFIED BY 'password';
-
-mysql> GRANT ALL PRIVILEGES ON allblog.* TO 'allblog'@'localhost';
-
-mysql> FLUSH PRIVILEGES;
-````
-
-#### 테스트용 DB 생성
-
-MySQL에 db생성권한이 있는 계정으로 접근하여 다음 명령 실행 필요
-
-````
-mysql> CREATE DATABASE allblog_test;
-
-mysql> CREATE USER 'allblog_test'@'localhost' IDENTIFIED BY 'password';
-
-mysql> GRANT ALL PRIVILEGES ON allblog_test.* TO 'allblog_test'@'localhost';
-
-mysql> FLUSH PRIVILEGES;
-````
+GRANT ALL PRIVILEGES ON allblog.* TO 'allblog'@'localhost';
+ 
+flush privileges;
+```
 
 #### .env 에 DB 관련 설정 변경
 
@@ -71,23 +43,26 @@ DB_USERNAME=allblog
 DB_PASSWORD=password
 ````
 
-#### 패키지에 존재하는 리소스들 복사해옴
-````
+#### 패키지에 존재하는 리소스들 복사
+
+```bash
 php artisan vendor:publish 
-````
+```
 
 
 #### 마이그레이션
 
-````
+```bash
 $ php artisan migrate
 
 $ php artisan migrate --path=packages/ModernPUG/FeedReader/migrations
-````
+```
 
 ### storage 폴더 권한 조정
 
-`chmod -R 755 storage`
+```bash
+$ chmod -R 755 storage
+```
 
 ### 오토로드 갱신
 

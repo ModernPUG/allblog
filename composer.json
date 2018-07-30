@@ -9,7 +9,8 @@
         "laravel/framework": "5.1.*",
         "doctrine/dbal": "~2.3",
         "modern-pug/feed-reader": "dev-master",
-        "prettus/l5-repository": "dev-master"
+        "prettus/l5-repository": "dev-master",
+        "modern-pug/feed-reader": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -36,7 +37,7 @@
             "php artisan optimize"
         ],
         "pre-update-cmd": [
-            "php artisan clear-compiled"
+
         ],
         "post-update-cmd": [
             "php artisan optimize"
