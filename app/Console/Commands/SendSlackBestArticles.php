@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Entities\Tag;
 use Illuminate\Console\Command;
+use Illuminate\Notifications\Messages\SlackMessage;
 use ModernPUG\FeedReader\IReader;
 
 class SendSlackBestArticles extends Command
@@ -12,7 +13,7 @@ class SendSlackBestArticles extends Command
 
     protected $description = 'Slack에 인기글을 보낸다';
 
-    public function fire(IReader $reader, Tag $tag)
+    public function handle(IReader $reader, Tag $tag)
     {
         $phpTagIds = [];
         $phpTagCollection = $tag->getPhpTagCollection();

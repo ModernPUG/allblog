@@ -12,7 +12,7 @@ class ClearDb extends Command
 
     protected $description = 'db 테이블을 모두 지운다.';
 
-    public function fire()
+    public function handle()
     {
         $tables = DB::select('SHOW TABLES');
 

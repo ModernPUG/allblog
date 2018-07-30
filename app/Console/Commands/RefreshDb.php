@@ -11,7 +11,7 @@ class RefreshDb extends Command
 
     protected $description = 'db 테이블을 모두 지운 후 마이그레이션 한다.';
 
-    public function fire()
+    public function handle()
     {
         Artisan::call('clear_db');
         Artisan::call('migrate');
