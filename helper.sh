@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 rm -rf packages/ModernPUG/FeedReader
 mkdir -p packages/ModernPUG
@@ -8,4 +9,4 @@ ln -s ../../packages/ModernPUG/FeedReader vendor/modern-pug/feed-reader
 
 composer dump
 
-php artisan vendor:publish
+php artisan vendor:publish --provider="App\Providers\ReaderServiceProvider"

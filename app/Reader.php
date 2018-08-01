@@ -18,7 +18,7 @@ class Reader extends \ModernPUG\FeedReader\Reader implements IReader
             $articles = Article::with('blog')
                 ->whereHas('tags', function ($q) use ($tag) {
 
-                    $q->whereIn('name', $tags);
+                    $q->whereIn('name', $tag);
                 });
         }
 

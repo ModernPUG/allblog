@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 
 <head>
 
@@ -67,11 +67,11 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::guest())
-                    <li><a href="{{ url('/auth/login') }}">Login</a></li>
-                    <li><a href="{{ url('/auth/register') }}">Register</a></li>
+                    <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a href="{{ route('register') }}">Register</a></li>
                 @else
                     <li><a href="{{ url('/blog/create') }}">Add a Blog</a></li>
-                    <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
+                    <li><a href="{{ route('logout') }}">Logout</a></li>
                 @endif
             </ul>
         </div>
